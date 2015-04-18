@@ -15,7 +15,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1sEKgCAURcHs/z+6rcGTDLJuMANuxIV4eGDbSNK+vgAnemTRI0/VpN/bu8V6rVgjmrzvqgnv0SKPHlnMSB498miSp/oLz/6NWU+TLKMOOn2v6lGdGXXR71l33nJmfnQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPifA97/AE0=
+   eJzt1lsKgCAURdGM5j/mfguuVPQ6xVrgjwiKG8E2kKS9fQBW9MiiR56qyXJuXAzu14rRo8nztprwHC3y6JHFG8mjRx5N8lR/4b1/Y+6nSZZeB53eV/Wo1vS66HetI3e55/3oAgAAnDH9ZA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgK+ZAZCrAFU=
   </data>
  </layer>
  <objectgroup name="Boxes">
