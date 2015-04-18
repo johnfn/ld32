@@ -6,6 +6,8 @@ public class Manager : MonoBehaviour {
 
     public GameObject Root;
 
+    public GameObject Scope;
+
     public static Manager Instance;
 
     void Awake()
@@ -32,5 +34,12 @@ public class Manager : MonoBehaviour {
         var cell = CreateGameObject(Vector3.zero, Instance.Tile);
 
         return cell.GetComponent<Tile>();
+    }
+
+    public static GameObject CreateScope()
+    {
+        var scope = CreateGameObject(Vector3.zero, Instance.Scope);
+
+        return scope;
     }
 }
