@@ -19,6 +19,17 @@ public class ScopeController : MonoBehaviour
 
     void Start()
     {
+        SetColor();
+    }
+
+    void SetColor()
+    {
+        if (IsFirstScope)
+        {
+            _renderer.color = Color.blue;
+            return;
+        }
+
         _renderer.color = SuckModeOn ? Color.red : Color.white;
     }
 
@@ -27,14 +38,21 @@ public class ScopeController : MonoBehaviour
         SuckModeOn = suckMode;
         IsFirstScope = isFirstScope;
 
-        Start();
+        if (IsFirstScope)
+        {
+            transform.localScale = new Vector3(2f, 2f, 1f);
+        }
+
+        SetColor();
     }
 
     public void Update()
     {
         if (IsFirstScope)
         {
-            Debug.Log("I'm the first scope!!!");
+            transform.Rotate(Vector3.forward * 2.0f);
+
+            SetColor();
         }
     }
 }

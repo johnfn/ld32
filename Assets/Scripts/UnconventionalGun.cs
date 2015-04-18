@@ -21,6 +21,8 @@ public class UnconventionalGun : MonoBehaviour
 
     private ObjectPool _scopePool;
 
+    private ScopeController _finalScope;
+
     private bool _isSucking = false;
 
     [UsedImplicitly]
@@ -28,6 +30,7 @@ public class UnconventionalGun : MonoBehaviour
     {
         _scopePool = new ObjectPool(() => Manager.CreateScope(false, false).gameObject);
         _canTakeInput = GetComponent<CanTakeInput>();
+        _finalScope = Manager.CreateScope(false, true);
 
         _canTakeInput.SwitchedOff += InputTurnedOff;
     }
@@ -131,6 +134,11 @@ public class UnconventionalGun : MonoBehaviour
 
             newScope.transform.position = start + normalizedDirection * DistanceBetweenScopeIndicators * (i + 1);
         }
+
+        // Add final scope
+
+        _finalScope.SuckModeOn = _isSucking;
+        _finalScope.transform.position = Util.MousePosition();
 
         _shotPath = new Ray(start, direction);
     }
