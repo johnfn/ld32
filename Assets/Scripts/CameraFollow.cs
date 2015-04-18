@@ -22,6 +22,21 @@ public class CameraFollow : MonoBehaviour
     void Awake()
     {
         _camera = GetComponent<Camera>();
+
+        Manager.CustomCamera = this;
+    }
+
+    public Vector3 ClampWithinCamera(Vector3 point)
+    {
+        var resultX = Mathf.Clamp(point.x, transform.position.x - Width, transform.position.x + Width);
+        var resultY = Mathf.Clamp(point.y, transform.position.y - Height, transform.position.y + Height);
+
+        return new Vector3(resultX, resultY, point.z);
+    }
+
+    public bool IsWithinCamera(Vector3 point)
+    {
+        return point == ClampWithinCamera(point);
     }
 
 	void LateUpdate()

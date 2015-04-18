@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using JetBrains.Annotations;
 
@@ -6,14 +7,21 @@ public class UnconventionalGun : MonoBehaviour
 {
     public bool HasGun;
 
-    public GameObject Scope;
-
     public LayerMask WallMask;
+
+    public float distanceBetweenScopeIndicators;
+
+    private List<GameObject> _scopePool = new List<GameObject>();
 
     [UsedImplicitly]
     public void Start()
     {
-        Scope = Manager.CreateScope();
+        for (var i = 0; i < 60; i++)
+        {
+            Debug.Log(i);
+
+            _scopePool.Add(Manager.CreateScope());
+        }
     }
 
     [UsedImplicitly]
@@ -27,11 +35,15 @@ public class UnconventionalGun : MonoBehaviour
         {
             if (hit.collider.gameObject == gameObject) continue;
 
-            Debug.Log(hit.collider.gameObject.name);
-
             end = hit.point;
         }
 
-        Debug.DrawRay(start, end - start);
+        var direction = end - start;
+        var normalizedDirection = direction.normalized;
+
+        for (var i = 0; i < direction.magnitude / distanceBetweenScopeIndicators; i++)
+        {
+            _scopePool[i].transform.position = start + normalizedDirection * distanceBetweenScopeIndicators * (i + 1);
+        }
     }
 }

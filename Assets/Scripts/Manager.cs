@@ -10,6 +10,8 @@ public class Manager : MonoBehaviour {
 
     public static Manager Instance;
 
+    public static CameraFollow CustomCamera;
+
     void Awake()
     {
         Instance = this;
