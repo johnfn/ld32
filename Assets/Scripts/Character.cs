@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Character : MonoBehaviour {
     private ControllableStats _stats;
@@ -39,6 +40,17 @@ public class Character : MonoBehaviour {
         _physics.AddVerticalForce(velocity.y);
     }
 
+    private void AbsorbNearbyGuys(CollisionModel collision)
+    {
+        Debug.Log(collision.TouchedObjects.Count);
+
+        var guys = collision.TouchedObjects.Where(t => t.Object.GetComponent<CanTakeInput>() != null);
+
+        foreach (var guy in guys)
+        {
+            Debug.Log("GUY FOUND");
+        }
+    }
 
 	void Update()
 	{
@@ -47,6 +59,7 @@ public class Character : MonoBehaviour {
 	    if (_canTakeInput.ActivelyTakingInput)
 	    {
 	        GetInput();
+	        AbsorbNearbyGuys(collision);
 	    }
 
 	    foreach (Collision t in collision.PreviouslyTouchedObjects)
