@@ -20,6 +20,13 @@ public class UnconventionalGun : MonoBehaviour
     {
         _scopePool = new ObjectPool(Manager.CreateScope);
         _canTakeInput = GetComponent<CanTakeInput>();
+
+        _canTakeInput.SwitchedOff += CleanUpScopes;
+    }
+
+    private void CleanUpScopes()
+    {
+        _scopePool.KillAllObjects();
     }
 
     [UsedImplicitly]
@@ -32,7 +39,6 @@ public class UnconventionalGun : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Ding");
-            Debug.Log(gameObject.name);
         }
     }
 
@@ -41,6 +47,8 @@ public class UnconventionalGun : MonoBehaviour
         var start = transform.position;
         var end = Util.MousePosition();
         var raycastHits = Physics2D.RaycastAll(start, end - start);
+
+        CleanUpScopes();
 
         foreach (var hit in raycastHits)
         {
@@ -54,8 +62,6 @@ public class UnconventionalGun : MonoBehaviour
 
         var direction = end - start;
         var normalizedDirection = direction.normalized;
-
-        _scopePool.KillAllObjects();
 
         for (var i = 0; i < direction.magnitude / distanceBetweenScopeIndicators - 1; i++)
         {

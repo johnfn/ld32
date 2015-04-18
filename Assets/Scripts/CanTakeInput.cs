@@ -6,7 +6,7 @@ public class CanTakeInput : MonoBehaviour
 {
     public bool ActivelyTakingInput;
 
-    public bool JustSwitched;
+    [HideInInspector] public bool JustSwitched;
 
     public static List<CanTakeInput> InputTargets = new List<CanTakeInput>();
 
@@ -14,6 +14,10 @@ public class CanTakeInput : MonoBehaviour
     {
         get { return InputTargets.Find(t => t.ActivelyTakingInput); }
     }
+
+    public event GenericEvent SwitchedOn;
+
+    public event GenericEvent SwitchedOff;
 
     private BoxCollider2D _collider;
 
@@ -50,8 +54,17 @@ public class CanTakeInput : MonoBehaviour
         var currentIndex = InputTargets.IndexOf(this);
         var nextIndex = (currentIndex + 1) % InputTargets.Count;
 
-        InputTargets[currentIndex].ActivelyTakingInput = false;
-        InputTargets[nextIndex].ActivelyTakingInput = true;
-        InputTargets[nextIndex].JustSwitched = true;
+        var currentTarget = InputTargets[currentIndex];
+        var nextTarget = InputTargets[nextIndex];
+
+        currentTarget.ActivelyTakingInput = false;
+        currentTarget.JustSwitched = true;
+        if (currentTarget.SwitchedOff != null) currentTarget.SwitchedOff();
+
+        nextTarget.ActivelyTakingInput = true;
+        nextTarget.JustSwitched = true;
+        if (nextTarget.SwitchedOn != null) nextTarget.SwitchedOn();
+
+        Debug.Log(currentIndex);
     }
 }

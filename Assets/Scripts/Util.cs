@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+public delegate void GenericEvent();
+
 class Util
 {
     public static float MapWidth = 8.0f;
