@@ -10,6 +10,9 @@ public class HudController : MonoBehaviour
     [UsedImplicitly]
     public void Update()
     {
-        EnergyText.text = "Woo";
+        var activeGuy = CanTakeInput.ActiveInputGuy;
+        var energy = activeGuy.GetComponent<HasEnergy>();
+
+        EnergyText.text = string.Format("{0} of {1} health", energy.HalfBatteriesLeft, energy.HalfBatteriesTotal);
     }
 }
