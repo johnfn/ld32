@@ -70,5 +70,25 @@ public class Character : MonoBehaviour {
 	        GetInput();
 	        AbsorbNearbyGuys(collision);
 	    }
+
+	    CheckForPowerupCollision(collision);
 	}
+
+    private void CheckForPowerupCollision(CollisionModel collision)
+    {
+        var powerup = collision.TouchedObjects
+            .FirstOrDefault(t => t.Object.tag == "Powerup");
+
+        if (powerup == null)
+        {
+            return;
+        }
+
+        var powerupObj = powerup.Object;
+
+        _energy.AddTotalEnergy(2);
+        _energy.AddEnergy(2);
+
+        Destroy(powerupObj);
+    }
 }

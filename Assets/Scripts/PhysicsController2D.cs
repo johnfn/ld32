@@ -12,7 +12,7 @@ public enum CollisionSide
     Left
 }
 
-public struct Collision
+public class Collision
 {
     /** Side of the collision (relative to the object being collided with) */
     public CollisionSide Side;
@@ -86,6 +86,7 @@ public class CollisionModel
     }
 }
 
+[RequireComponent(typeof(BoxCollider2D))]
 [DisallowMultipleComponent]
 public class PhysicsController2D : MonoBehaviour
 {
@@ -309,11 +310,5 @@ public class PhysicsController2D : MonoBehaviour
         }
 
         _transform.Translate(new Vector3(velocity.x, 0, 0));
-
-        Collisions.TouchedObjects =
-            Collisions.TouchedObjects
-                .GroupBy(t => t.Object)
-                .Select(t => t.First())
-                .ToList();
     }
 }
