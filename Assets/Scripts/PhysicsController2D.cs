@@ -52,9 +52,7 @@ public class CollisionModel
     {
         get
         {
-            if (OldModel == null) return new List<Collision>();
-
-            return OldModel.TouchedObjects;
+            return OldModel == null ? new List<Collision>() : OldModel.TouchedObjects;
         }
     }
 
