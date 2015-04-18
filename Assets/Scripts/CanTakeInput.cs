@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 
 public class CanTakeInput : MonoBehaviour
 {
@@ -21,13 +22,30 @@ public class CanTakeInput : MonoBehaviour
         }
     }
 
+    public static List<CanTakeInput> InputTargets = new List<CanTakeInput>();
+
     public static CanTakeInput ActiveInputGuy;
 
+    private BoxCollider2D _collider;
+
+    [UsedImplicitly]
+    public void Awake()
+    {
+        _collider = GetComponent<BoxCollider2D>();
+
+        InputTargets.Add(this);
+    }
+
+    [UsedImplicitly]
     public void Update()
     {
         if (ActivelyTakingInput)
         {
-            Debug.Log(gameObject.name);
+            var position = gameObject.transform.position;
+
+            position.y += _collider.bounds.size.y / 2 + 0.1f;
+
+            Manager.Instance.Indicator.transform.position = position;
         }
     }
 }
