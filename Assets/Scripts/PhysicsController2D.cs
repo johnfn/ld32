@@ -50,7 +50,12 @@ public class CollisionModel
 
     public List<Collision> PreviouslyTouchedObjects
     {
-        get { return OldModel.TouchedObjects; }
+        get
+        {
+            if (OldModel == null) return new List<Collision>();
+
+            return OldModel.TouchedObjects;
+        }
     }
 
     public CollisionModel OldModel;

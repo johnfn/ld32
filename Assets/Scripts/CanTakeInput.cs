@@ -4,27 +4,16 @@ using JetBrains.Annotations;
 
 public class CanTakeInput : MonoBehaviour
 {
-    /** Don't use. Just for inspector. */
-    public bool _activelyTakingInput;
+    public bool ActivelyTakingInput;
 
-    public bool ActivelyTakingInput
-    {
-        get { return _activelyTakingInput; }
-        set
-        {
-            if (value)
-            {
-                ActiveInputGuy.ActivelyTakingInput = false;
-                ActiveInputGuy = this;
-            }
-
-            _activelyTakingInput = value;
-        }
-    }
+    public bool JustSwitched;
 
     public static List<CanTakeInput> InputTargets = new List<CanTakeInput>();
 
-    public static CanTakeInput ActiveInputGuy;
+    public static CanTakeInput ActiveInputGuy
+    {
+        get { return InputTargets.Find(t => t.ActivelyTakingInput); }
+    }
 
     private BoxCollider2D _collider;
 
@@ -39,13 +28,30 @@ public class CanTakeInput : MonoBehaviour
     [UsedImplicitly]
     public void Update()
     {
-        if (ActivelyTakingInput)
+        if (ActivelyTakingInput && !JustSwitched)
         {
             var position = gameObject.transform.position;
 
             position.y += _collider.bounds.size.y / 2 + 0.1f;
 
             Manager.Instance.Indicator.transform.position = position;
+
+            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+            {
+                SwitchInput();
+            }
         }
+
+        JustSwitched = false;
+    }
+
+    private void SwitchInput()
+    {
+        var currentIndex = InputTargets.IndexOf(this);
+        var nextIndex = (currentIndex + 1) % InputTargets.Count;
+
+        InputTargets[currentIndex].ActivelyTakingInput = false;
+        InputTargets[nextIndex].ActivelyTakingInput = true;
+        InputTargets[nextIndex].JustSwitched = true;
     }
 }
