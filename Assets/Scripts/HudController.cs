@@ -37,7 +37,22 @@ public class HudController : MonoBehaviour
             transform.SetParent(BatteryContainer.GetComponent<RectTransform>(), false);
             transform.anchoredPosition = new Vector2(transform.rect.width * i, 0f);
 
-            battery.Init(BatteryState.Half);
+            BatteryState state;
+
+            if (i * 2 + 2 <= energy.HalfBatteriesLeft)
+            {
+                state = BatteryState.Full;
+            }
+            else if (i * 2 + 1 <= energy.HalfBatteriesLeft)
+            {
+                state = BatteryState.Half;
+            }
+            else
+            {
+                state = BatteryState.Empty;
+            }
+
+            battery.Init(state);
         }
     }
 
