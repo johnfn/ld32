@@ -11,17 +11,12 @@ public class UnconventionalGun : MonoBehaviour
 
     public float distanceBetweenScopeIndicators;
 
-    private List<GameObject> _scopePool = new List<GameObject>();
+    private ObjectPool _scopePool;
 
     [UsedImplicitly]
     public void Start()
     {
-        for (var i = 0; i < 60; i++)
-        {
-            Debug.Log(i);
-
-            _scopePool.Add(Manager.CreateScope());
-        }
+        _scopePool = new ObjectPool(Manager.CreateScope);
     }
 
     [UsedImplicitly]
@@ -41,9 +36,11 @@ public class UnconventionalGun : MonoBehaviour
         var direction = end - start;
         var normalizedDirection = direction.normalized;
 
+        _scopePool.KillAllObjects();
+
         for (var i = 0; i < direction.magnitude / distanceBetweenScopeIndicators; i++)
         {
-            _scopePool[i].transform.position = start + normalizedDirection * distanceBetweenScopeIndicators * (i + 1);
+            _scopePool.SpawnObject().transform.position = start + normalizedDirection * distanceBetweenScopeIndicators * (i + 1);
         }
     }
 }
