@@ -40,10 +40,13 @@ public class Manager : MonoBehaviour {
         return cell.GetComponent<Tile>();
     }
 
-    public static GameObject CreateScope()
+    public static ScopeController CreateScope(bool suckMode, bool isFirstScope)
     {
         var scope = CreateGameObject(Vector3.zero, Instance.Scope);
+        var controller = scope.GetComponent<ScopeController>();
 
-        return scope;
+        controller.Init(suckMode, isFirstScope);
+
+        return controller;
     }
 }

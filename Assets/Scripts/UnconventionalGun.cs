@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using JetBrains.Annotations;
 
+[DisallowMultipleComponent]
 public class UnconventionalGun : MonoBehaviour
 {
     public bool HasGun;
@@ -15,18 +16,22 @@ public class UnconventionalGun : MonoBehaviour
 
     private ObjectPool _scopePool;
 
+    private bool _isSucking = false;
+
     [UsedImplicitly]
     public void Start()
     {
-        _scopePool = new ObjectPool(Manager.CreateScope);
+        _scopePool = new ObjectPool(() => Manager.CreateScope(false, false).gameObject);
         _canTakeInput = GetComponent<CanTakeInput>();
 
-        _canTakeInput.SwitchedOff += CleanUpScopes;
+        _canTakeInput.SwitchedOff += InputTurnedOff;
     }
 
-    private void CleanUpScopes()
+    private void InputTurnedOff()
     {
         _scopePool.KillAllObjects();
+
+        _isSucking = false;
     }
 
     [UsedImplicitly]
@@ -38,8 +43,23 @@ public class UnconventionalGun : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Ding");
+            ShootCopy();
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            _isSucking = true;
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            _isSucking = false;
+        }
+    }
+
+    private void ShootCopy()
+    {
+        Debug.Log("TODO: I'm shooting a copy!!!1");
     }
 
     private void DrawScopes()
@@ -48,7 +68,7 @@ public class UnconventionalGun : MonoBehaviour
         var end = Util.MousePosition();
         var raycastHits = Physics2D.RaycastAll(start, end - start);
 
-        CleanUpScopes();
+        _scopePool.KillAllObjects();
 
         foreach (var hit in raycastHits)
         {
@@ -65,7 +85,12 @@ public class UnconventionalGun : MonoBehaviour
 
         for (var i = 0; i < direction.magnitude / distanceBetweenScopeIndicators - 1; i++)
         {
-            _scopePool.SpawnObject().transform.position = start + normalizedDirection * distanceBetweenScopeIndicators * (i + 1);
+            var newScope = _scopePool.SpawnObject();
+            var scopeController = newScope.GetComponent<ScopeController>();
+
+            scopeController.Init(_isSucking, false);
+
+            newScope.transform.position = start + normalizedDirection * distanceBetweenScopeIndicators * (i + 1);
         }
     }
 }

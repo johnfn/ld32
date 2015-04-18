@@ -86,6 +86,7 @@ public class CollisionModel
     }
 }
 
+[DisallowMultipleComponent]
 public class PhysicsController2D : MonoBehaviour
 {
     private BoxCollider2D _collider;

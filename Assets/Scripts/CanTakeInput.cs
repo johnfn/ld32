@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
+[DisallowMultipleComponent]
 public class CanTakeInput : MonoBehaviour
 {
     public bool ActivelyTakingInput;
