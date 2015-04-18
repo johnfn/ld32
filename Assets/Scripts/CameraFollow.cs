@@ -5,6 +5,8 @@ public class CameraFollow : MonoBehaviour
 {
     public GameObject Target;
 
+    public float CameraSpeed;
+
     public float Height
     {
         get { return 2.0f * _camera.orthographicSize; }
@@ -39,6 +41,8 @@ public class CameraFollow : MonoBehaviour
 	    var camX = Mathf.Clamp(Target.transform.position.x, minX, maxX);
 	    var camY = Mathf.Clamp(Target.transform.position.y, minY, maxY);
 
-	    transform.position = new Vector3(camX, camY, transform.position.z);
+        var desiredPosition = new Vector3(camX, camY, transform.position.z);
+
+	    transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * CameraSpeed);
 	}
 }
