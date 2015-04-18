@@ -81,4 +81,10 @@ public class CanTakeInput : MonoBehaviour
 
         if (InputHolderChanged != null) InputHolderChanged();
     }
+
+    [UsedImplicitly]
+    void OnDestroy()
+    {
+        InputTargets.Remove(this);
+    }
 }

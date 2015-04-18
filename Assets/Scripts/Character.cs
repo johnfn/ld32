@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
+[DisallowMultipleComponent]
 public class Character : MonoBehaviour {
     private ControllableStats _stats;
     private PhysicsController2D _physics;
     private CanTakeInput _canTakeInput;
+    private HasEnergy _energy;
 
 	void Start() {
         // TODO move friction and vel cap in here, too.
@@ -13,6 +15,7 @@ public class Character : MonoBehaviour {
 	    _physics = GetComponent<PhysicsController2D>();
 	    _stats = GetComponent<ControllableStats>();
 	    _canTakeInput = GetComponent<CanTakeInput>();
+	    _energy = GetComponent<HasEnergy>();
 	}
 	
     void GetInput()
@@ -42,13 +45,19 @@ public class Character : MonoBehaviour {
 
     private void AbsorbNearbyGuys(CollisionModel collision)
     {
-        Debug.Log(collision.TouchedObjects.Count);
-
-        var guys = collision.TouchedObjects.Where(t => t.Object.GetComponent<CanTakeInput>() != null);
+        var guys = collision.TouchedObjects
+            .Where(t => t.Object.GetComponent<CanTakeInput>() != null)
+            .ToList();
 
         foreach (var guy in guys)
         {
-            Debug.Log("GUY FOUND");
+            var energy = guy.Object.GetComponent<HasEnergy>();
+
+            // Order here is important
+            _energy.AddTotalEnergy(energy.HalfBatteriesTotal);
+            _energy.AddEnergy(energy.HalfBatteriesLeft);
+
+            Destroy(guy.Object);
         }
     }
 
@@ -60,26 +69,6 @@ public class Character : MonoBehaviour {
 	    {
 	        GetInput();
 	        AbsorbNearbyGuys(collision);
-	    }
-
-	    foreach (Collision t in collision.PreviouslyTouchedObjects)
-	    {
-	        if (!t.Object.GetComponent<SpriteRenderer>()) continue; 
-
-	        t.Object.GetComponent<SpriteRenderer>().color = Color.white;
-	    }
-
-	    foreach (Collision t in collision.TouchedObjects)
-	    {
-	        if (!t.Object.GetComponent<SpriteRenderer>()) continue;
-
-
-	        t.Object.GetComponent<SpriteRenderer>().color = Color.red;
-
-	        if (t.Side == CollisionSide.Left || t.Side == CollisionSide.Right)
-	        {
-	            t.Object.GetComponent<PhysicsController2D>().AddHorizontalForce(_physics.Velocity.x * 0.95f);
-	        }
 	    }
 	}
 }

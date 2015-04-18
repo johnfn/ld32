@@ -232,7 +232,7 @@ public class PhysicsController2D : MonoBehaviour
 
                         Collisions.TouchedObjects.Add(myCollision);
 
-                        if (otherPhysics)
+                        if (otherPhysics && !otherPhysics.Collisions.TouchedObjects.Any(t => t.Object == gameObject))
                         {
                             otherPhysics.Collisions.TouchedObjects.Add(new Collision
                             {
@@ -286,14 +286,21 @@ public class PhysicsController2D : MonoBehaviour
 
                     if (Math.Abs(newVelocity) < Math.Abs(velocity.x))
                     {
+                        var otherPhysics = hit.collider.gameObject.GetComponent<PhysicsController2D>();
                         velocity.x = newVelocity;
                         Collisions.TouchedObjects.Add(new Collision {
                             Side = velocity.x > 0 ? CollisionSide.Right : CollisionSide.Left,
                             Object = hit.collider.gameObject 
                         });
 
-
-                        // TODO other half of collision data missing currently
+                        if (otherPhysics && !otherPhysics.Collisions.TouchedObjects.Any(t => t.Object == gameObject))
+                        {
+                            otherPhysics.Collisions.TouchedObjects.Add(new Collision
+                            {
+                                Side = velocity.x > 0 ? CollisionSide.Left : CollisionSide.Right,
+                                Object = gameObject
+                            });
+                        }
 
                         break;
                     }
@@ -302,5 +309,11 @@ public class PhysicsController2D : MonoBehaviour
         }
 
         _transform.Translate(new Vector3(velocity.x, 0, 0));
+
+        Collisions.TouchedObjects =
+            Collisions.TouchedObjects
+                .GroupBy(t => t.Object)
+                .Select(t => t.First())
+                .ToList();
     }
 }
