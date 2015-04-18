@@ -8,6 +8,8 @@ public class Manager : MonoBehaviour {
 
     public GameObject Scope;
 
+    public GameObject Indicator;
+
     public static Manager Instance;
 
     public static CameraFollow CustomCamera;

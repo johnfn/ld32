@@ -11,17 +11,22 @@ public class UnconventionalGun : MonoBehaviour
 
     public float distanceBetweenScopeIndicators;
 
+    private CanTakeInput _canTakeInput;
+
     private ObjectPool _scopePool;
 
     [UsedImplicitly]
     public void Start()
     {
         _scopePool = new ObjectPool(Manager.CreateScope);
+        _canTakeInput = GetComponent<CanTakeInput>();
     }
 
     [UsedImplicitly]
     public void Update()
     {
+        if (!_canTakeInput.ActivelyTakingInput) return;
+
         var start = transform.position;
         var end = Util.MousePosition();
         var raycastHits = Physics2D.RaycastAll(start, end - start);

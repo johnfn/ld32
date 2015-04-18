@@ -4,12 +4,14 @@ using System.Collections;
 public class Character : MonoBehaviour {
     private ControllableStats _stats;
     private PhysicsController2D _physics;
+    private CanTakeInput _canTakeInput;
 
 	void Start() {
         // TODO move friction and vel cap in here, too.
 
 	    _physics = GetComponent<PhysicsController2D>();
 	    _stats = GetComponent<ControllableStats>();
+	    _canTakeInput = GetComponent<CanTakeInput>();
 	}
 	
     void UpdateVelocity()
@@ -42,7 +44,10 @@ public class Character : MonoBehaviour {
 	{
 	    var collision = GetComponent<PhysicsController2D>().Collisions;
 
-	    UpdateVelocity();
+	    if (_canTakeInput.ActivelyTakingInput)
+	    {
+	        UpdateVelocity();
+	    }
 
 	    foreach (Collision t in collision.PreviouslyTouchedObjects)
 	    {
