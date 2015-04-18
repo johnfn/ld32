@@ -5,14 +5,41 @@ using JetBrains.Annotations;
 
 public class HudController : MonoBehaviour
 {
-    public Text EnergyText;
+    public GameObject BatteryContainer;
+
+    private ObjectPool _batteryPool;
 
     [UsedImplicitly]
-    public void Update()
+    public void Awake()
+    {
+        _batteryPool = new ObjectPool(() => Manager.CreateBattery().gameObject);
+    }
+
+    [UsedImplicitly]
+    public void Start()
+    {
+        CanTakeInput.InputHolderChanged += OnChangeActiveGuy;
+    }
+
+    private void OnChangeActiveGuy()
     {
         var activeGuy = CanTakeInput.ActiveInputGuy;
         var energy = activeGuy.GetComponent<HasEnergy>();
 
-        EnergyText.text = string.Format("{0} of {1} health", energy.HalfBatteriesLeft, energy.HalfBatteriesTotal);
+        _batteryPool.KillAllObjects();
+
+        for (var i = 0; i < energy.HalfBatteriesTotal / 2; i++)
+        {
+            var battery = _batteryPool.SpawnObject();
+            var transform = battery.GetComponent<RectTransform>();
+
+            transform.SetParent(BatteryContainer.GetComponent<RectTransform>(), false);
+            transform.anchoredPosition = new Vector2(transform.rect.width * i, 0f);
+        }
+    }
+
+    [UsedImplicitly]
+    public void Update()
+    {
     }
 }

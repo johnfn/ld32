@@ -20,7 +20,11 @@ public class CanTakeInput : MonoBehaviour
 
     public event GenericEvent SwitchedOff;
 
+    public static event GenericEvent InputHolderChanged;
+
     private BoxCollider2D _collider;
+
+    private bool _firstRun = true;
 
     [UsedImplicitly]
     public void Awake()
@@ -47,6 +51,13 @@ public class CanTakeInput : MonoBehaviour
             }
         }
 
+        if (_firstRun)
+        {
+            if (InputHolderChanged != null) InputHolderChanged();
+
+            _firstRun = false;
+        }
+
         JustSwitched = false;
     }
 
@@ -67,5 +78,7 @@ public class CanTakeInput : MonoBehaviour
         if (nextTarget.SwitchedOn != null) nextTarget.SwitchedOn();
 
         Manager.CustomCamera.Target = nextTarget.gameObject;
+
+        if (InputHolderChanged != null) InputHolderChanged();
     }
 }

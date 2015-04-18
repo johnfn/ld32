@@ -29,7 +29,7 @@ public class ObjectPool
         if (deadObject != null)
         {
             deadObject.isAlive = true;
-            deadObject.obj.GetComponent<SpriteRenderer>().enabled = true;
+            deadObject.obj.SetActive(true);
 
             return deadObject.obj;
         }
@@ -50,7 +50,7 @@ public class ObjectPool
         var soonToBeDeadObject = _pool.First(t => t.obj == obj);
 
         soonToBeDeadObject.isAlive = false;
-        soonToBeDeadObject.obj.GetComponent<SpriteRenderer>().enabled = false;
+        soonToBeDeadObject.obj.SetActive(false);
     }
 
     public void KillAllObjects()
