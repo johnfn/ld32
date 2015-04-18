@@ -202,11 +202,6 @@ public class PhysicsController2D : MonoBehaviour
         // Note: We shoot out the rays about epsilon away from our actual edge for a complicated
         // reason I don't want to get into right now. 
 
-        if (gameObject.name == "Player 1")
-        {
-            Debug.Log(velocity.y);
-        }
-
         if (Math.Abs(velocity.y) > .0001f)
         {
             var firstRayOrigin = transform.position + new Vector3(-Width / 2, Math.Sign(velocity.y) * Height / 2, 0.0f);

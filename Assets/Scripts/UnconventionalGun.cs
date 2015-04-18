@@ -81,9 +81,23 @@ public class UnconventionalGun : MonoBehaviour
         foreach (var target in allTargets)
         {
             var distance = Util.DistanceToLine(_shotPath, target.transform.position);
-            var physics = target.GetComponent<PhysicsController2D>();
 
-            physics.SetVerticalForce(Time.deltaTime * SuckPower / distance);
+            if (distance < .05) continue;
+
+            var physics = target.GetComponent<PhysicsController2D>();
+            var collisionPoint = _shotPath.origin +
+                                 _shotPath.direction * Vector3.Dot(_shotPath.direction, target.transform.position - _shotPath.origin) / 2;
+
+            var dir = collisionPoint - target.transform.position;
+            dir.Normalize();
+
+            if (distance < .1)
+            {
+                dir = dir * .1f;
+            }
+
+            physics.AddVerticalForce(dir.y * Time.deltaTime);
+            physics.AddHorizontalForce(dir.x * Time.deltaTime);
         }
     }
 
