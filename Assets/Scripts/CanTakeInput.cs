@@ -65,6 +65,6 @@ public class CanTakeInput : MonoBehaviour
         nextTarget.JustSwitched = true;
         if (nextTarget.SwitchedOn != null) nextTarget.SwitchedOn();
 
-        Debug.Log(currentIndex);
+        Manager.CustomCamera.Target = nextTarget.gameObject;
     }
 }
