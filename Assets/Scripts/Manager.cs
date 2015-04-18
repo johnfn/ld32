@@ -57,7 +57,7 @@ public class Manager : MonoBehaviour {
         var battery = CreateGameObject(Vector3.zero, Instance.Battery);
         var controller = battery.GetComponent<BatteryController>();
 
-        controller.Init();
+        controller.Init(BatteryState.Full);
 
         return controller;
     }

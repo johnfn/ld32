@@ -30,11 +30,14 @@ public class HudController : MonoBehaviour
 
         for (var i = 0; i < energy.HalfBatteriesTotal / 2; i++)
         {
-            var battery = _batteryPool.SpawnObject();
-            var transform = battery.GetComponent<RectTransform>();
+            var obj = _batteryPool.SpawnObject();
+            var transform = obj.GetComponent<RectTransform>();
+            var battery = obj.GetComponent<BatteryController>();
 
             transform.SetParent(BatteryContainer.GetComponent<RectTransform>(), false);
             transform.anchoredPosition = new Vector2(transform.rect.width * i, 0f);
+
+            battery.Init(BatteryState.Half);
         }
     }
 
