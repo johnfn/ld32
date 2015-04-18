@@ -202,18 +202,23 @@ public class PhysicsController2D : MonoBehaviour
         // Note: We shoot out the rays about epsilon away from our actual edge for a complicated
         // reason I don't want to get into right now. 
 
+        if (gameObject.name == "Player 1")
+        {
+            Debug.Log(velocity.y);
+        }
+
         if (Math.Abs(velocity.y) > .0001f)
         {
             var firstRayOrigin = transform.position + new Vector3(-Width / 2, Math.Sign(velocity.y) * Height / 2, 0.0f);
-            var rayDirection = Vector2.up * -Math.Sign(velocity.y);
+            var rayDirection = Vector2.up * Math.Sign(velocity.y);
 
             for (var i = 0; i < numRays; i++)
             {
                 var xOffset = i * (Width - skinWidth * 2) / (numRays - 1) + skinWidth;
                 var rayOrigin = firstRayOrigin + new Vector3(xOffset, 0.0f, 0.0f);
-                var raycastHits = Physics2D.RaycastAll(rayOrigin, rayDirection, velocity.y, WallMask);
+                var raycastHits = Physics2D.RaycastAll(rayOrigin, rayDirection, Mathf.Abs(velocity.y), WallMask);
 
-                Debug.DrawRay(rayOrigin, rayDirection * velocity.y, Color.blue);
+                Debug.DrawRay(rayOrigin, rayDirection * Math.Abs(velocity.y), Color.blue);
 
                 foreach (var hit in raycastHits)
                 {

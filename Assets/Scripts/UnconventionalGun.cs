@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using JetBrains.Annotations;
 
 [DisallowMultipleComponent]
@@ -10,7 +11,11 @@ public class UnconventionalGun : MonoBehaviour
 
     public LayerMask WallMask;
 
-    public float distanceBetweenScopeIndicators;
+    public float SuckPower;
+
+    public float DistanceBetweenScopeIndicators;
+
+    private Ray _shotPath;
 
     private CanTakeInput _canTakeInput;
 
@@ -55,11 +60,31 @@ public class UnconventionalGun : MonoBehaviour
         {
             _isSucking = false;
         }
+
+        if (_isSucking)
+        {
+            Suck();
+        }
     }
 
     private void ShootCopy()
     {
         Debug.Log("TODO: I'm shooting a copy!!!1");
+    }
+
+    private void Suck()
+    {
+        var allTargets = CanTakeInput.InputTargets
+            .Where(it => it != _canTakeInput)
+            .Select(it => it.gameObject);
+
+        foreach (var target in allTargets)
+        {
+            var distance = Util.DistanceToLine(_shotPath, target.transform.position);
+            var physics = target.GetComponent<PhysicsController2D>();
+
+            physics.SetVerticalForce(Time.deltaTime * SuckPower / distance);
+        }
     }
 
     private void DrawScopes()
@@ -83,14 +108,16 @@ public class UnconventionalGun : MonoBehaviour
         var direction = end - start;
         var normalizedDirection = direction.normalized;
 
-        for (var i = 0; i < direction.magnitude / distanceBetweenScopeIndicators - 1; i++)
+        for (var i = 0; i < direction.magnitude / DistanceBetweenScopeIndicators - 1; i++)
         {
             var newScope = _scopePool.SpawnObject();
             var scopeController = newScope.GetComponent<ScopeController>();
 
             scopeController.Init(_isSucking, false);
 
-            newScope.transform.position = start + normalizedDirection * distanceBetweenScopeIndicators * (i + 1);
+            newScope.transform.position = start + normalizedDirection * DistanceBetweenScopeIndicators * (i + 1);
         }
+
+        _shotPath = new Ray(start, direction);
     }
 }

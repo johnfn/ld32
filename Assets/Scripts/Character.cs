@@ -14,7 +14,7 @@ public class Character : MonoBehaviour {
 	    _canTakeInput = GetComponent<CanTakeInput>();
 	}
 	
-    void UpdateVelocity()
+    void GetInput()
     {
 	    var collision = GetComponent<PhysicsController2D>().Collisions;
         var horizontalForce = 0.0f;
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour {
 
 	    if (_canTakeInput.ActivelyTakingInput)
 	    {
-	        UpdateVelocity();
+	        GetInput();
 	    }
 
 	    foreach (Collision t in collision.PreviouslyTouchedObjects)
