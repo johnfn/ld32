@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-struct PooledObject
+class PooledObject
 {
     public GameObject obj;
 
@@ -26,7 +26,7 @@ public class ObjectPool
     {
         var deadObject = _pool.FirstOrDefault(t => !t.isAlive);
 
-        if (deadObject.obj != null)
+        if (deadObject != null)
         {
             deadObject.isAlive = true;
             deadObject.obj.GetComponent<SpriteRenderer>().enabled = true;
