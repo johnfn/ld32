@@ -66,10 +66,12 @@ public class UnconventionalGun : MonoBehaviour
             else if (_energy.HalfBatteriesLeft == 2)
             {
                 Debug.Log("Special case: Time to die");
+
+                Manager.Instance.Dialog.ShowDialog();
             }
             else
             {
-                Debug.Log("You can't do that.");
+                Manager.Instance.Dialog.ShowDialog();
             }
         }
 
@@ -110,10 +112,6 @@ public class UnconventionalGun : MonoBehaviour
 
         foreach (var target in allTargets)
         {
-            var directDistanceToMe = (target.transform.position - transform.position).magnitude;
-
-            // Debug.Log(directDistanceToMe);
-
             var distance = Util.DistanceToLine(_shotPath, target.transform.position);
 
             if (distance > .6) continue;

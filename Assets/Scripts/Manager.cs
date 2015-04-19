@@ -14,6 +14,8 @@ public class Manager : MonoBehaviour {
 
     public GameObject Character;
 
+    public DialogController Dialog;
+
     public static Manager Instance;
 
     public static CameraFollow CustomCamera;
