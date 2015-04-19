@@ -44,6 +44,8 @@ public class DialogController : MonoBehaviour
 
     public Text DialogText;
 
+    public Text SpeakerText;
+
     public Text ClickToContinue;
 
     private List<List<string>> _dialogContent;
@@ -65,7 +67,7 @@ public class DialogController : MonoBehaviour
 
     private string CurrentSpeaker
     {
-        get { return _dialogContent[_dialogPosition][1]; }
+        get { return _dialogContent[_dialogPosition][0]; }
     }
 
     [UsedImplicitly]
@@ -103,8 +105,12 @@ public class DialogController : MonoBehaviour
 
         _ticks++;
 
+        SpeakerText.text = CurrentSpeaker;
+
         if (_visibleText == CurrentFullText)
         {
+            ClickToContinue.text = "Click to continue";
+
             if (Input.GetMouseButtonUp(0))
             {
                 _ticks = 0;
@@ -126,6 +132,8 @@ public class DialogController : MonoBehaviour
 
         if (_ticks > 2 || Input.GetMouseButton(0))
         {
+            ClickToContinue.text = "Click to speed up";
+
             _visibleText += CurrentFullText[_visibleText.Length];
             DialogText.text = _visibleText;
 
