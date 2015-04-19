@@ -134,6 +134,8 @@ namespace Tiled2Unity
         private void AssignLayerTo(GameObject gameObject, XElement xml)
         {
             string layerName = ImportUtils.GetAttributeAsString(xml, "layer", "");
+            Debug.Log(layerName);
+
             if (String.IsNullOrEmpty(layerName))
                 return;
 
