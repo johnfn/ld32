@@ -15,6 +15,21 @@
  </tileset>
  <tileset firstgid="5" name="tilez_0000_Layer-5" tilewidth="32" tileheight="32">
   <image source="//vmware-host/Shared Folders/Documents/TexturesOnOSX/tilez_0000_Layer-5.png" width="480" height="293"/>
+  <tile id="21">
+   <objectgroup draworder="index">
+    <object id="0" x="0" y="32" width="32" height="8"/>
+   </objectgroup>
+  </tile>
+  <tile id="30">
+   <objectgroup draworder="index">
+    <object id="0" x="0" y="32" width="31.75" height="7"/>
+   </objectgroup>
+  </tile>
+  <tile id="31">
+   <objectgroup draworder="index">
+    <object id="0" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="140" name="waterair" tilewidth="32" tileheight="32">
   <image source="//vmware-host/Shared Folders/Documents/TexturesOnOSX/tilez_0001_Layer-1.png" width="640" height="640"/>
@@ -26,11 +41,16 @@
  </layer>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0zEKwjAYhuF/8BDuLXgBL+Di6KRuTuoFvP9gh1aCNHaoNFGeB74lSwIviaBGbekH8NKGHjXRoy561KMJPWqyS9Yko4y0xzYZZcztsU7GfLkezcQGm2TMl+uxn9hAj+/61OMYepT03uMaetQi1+PQb6DFMnI9Lv0G/scy0h6nbufQo6S0x63bPcZ7sJzHyJkeddEDAKCs1Z/cAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwa55cvCFK
+   eJzt0yEOwjAYhuEKToGd4AJcAINEAQ4FuwD3F0ysyQ9ZmRhZN/I8yWdq2uRNUwIA1q6p/QDeHMKaMOqIPfZh1DG1xzaM6Uo9mpFluzCmK/U4jizT47e+9TgnPWr67HFPeixFqcepX6bFPEo9bv0y/2Mescel2zXpUVPs8ejWpuEezOc5cKbHsugBAFDX5k/uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYmxdUwCAM
   </data>
  </layer>
  <objectgroup name="Boxes">
   <object id="6" gid="4" x="320" y="384"/>
   <object id="7" gid="4" x="576" y="448"/>
  </objectgroup>
+ <layer name="HardcoreCollision" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0TENADAMwLCCKX+MfQZhRw5bCoLMULMvGvxo8aPFjxY/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4I8DwssBaQ==
+  </data>
+ </layer>
 </map>
