@@ -72,7 +72,9 @@ public class UnconventionalGun : MonoBehaviour
 
     private void ShootCopy()
     {
-        Debug.Log("TODO: I'm shooting a copy!!!1");
+        var copy = Manager.CreateCharacter();
+
+        copy.transform.position = transform.position + new Vector3(1f, 0f, 0f);
     }
 
     private void Suck()

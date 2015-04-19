@@ -12,6 +12,8 @@ public class Manager : MonoBehaviour {
 
     public GameObject Battery;
 
+    public GameObject Character;
+
     public static Manager Instance;
 
     public static CameraFollow CustomCamera;
@@ -58,6 +60,16 @@ public class Manager : MonoBehaviour {
         var controller = battery.GetComponent<BatteryController>();
 
         controller.Init(BatteryState.Full);
+
+        return controller;
+    }
+
+    public static Character CreateCharacter()
+    {
+        var character = CreateGameObject(Vector3.zero, Instance.Character);
+        var controller = character.GetComponent<Character>();
+
+        controller.Init();
 
         return controller;
     }

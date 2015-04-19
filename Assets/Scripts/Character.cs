@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 [DisallowMultipleComponent]
 public class Character : MonoBehaviour {
@@ -9,6 +10,7 @@ public class Character : MonoBehaviour {
     private CanTakeInput _canTakeInput;
     private HasEnergy _energy;
 
+    [UsedImplicitly]
 	void Start() {
         // TODO move friction and vel cap in here, too.
 
@@ -17,6 +19,11 @@ public class Character : MonoBehaviour {
 	    _canTakeInput = GetComponent<CanTakeInput>();
 	    _energy = GetComponent<HasEnergy>();
 	}
+
+    public void Init()
+    {
+        
+    }
 	
     void GetInput()
     {
