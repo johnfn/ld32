@@ -59,6 +59,7 @@ public class UnconventionalGun : MonoBehaviour
             if (_energy.HalfBatteriesLeft > 2)
             {
                 _energy.AddEnergy(-2);
+                _energy.AddTotalEnergy(-2);
 
                 ShootCopy();
             }
