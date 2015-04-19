@@ -176,6 +176,8 @@ public class PhysicsController2D : MonoBehaviour
 
     void ApplyFriction(ref Vector3 velocity)
     {
+        if (!Collisions.OldModel.TouchingBottom) return;
+
         if (Math.Abs(velocity.x) < _stats.Friction)
         {
             velocity.x = 0;

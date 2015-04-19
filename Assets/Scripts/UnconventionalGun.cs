@@ -13,6 +13,8 @@ public class UnconventionalGun : MonoBehaviour
 
     public float SuckPower;
 
+    public float FirePower;
+
     public float DistanceBetweenScopeIndicators;
 
     private Ray _shotPath;
@@ -73,8 +75,14 @@ public class UnconventionalGun : MonoBehaviour
     private void ShootCopy()
     {
         var copy = Manager.CreateCharacter();
+        var hisPhysics = copy.GetComponent<PhysicsController2D>();
+        var start = transform.position;
+        var direction = Util.MousePosition() - start;
 
-        copy.transform.position = transform.position + new Vector3(1f, 0f, 0f);
+        copy.transform.position = start + direction.normalized * 0.5f;
+
+        hisPhysics.AddHorizontalForce(direction.normalized.x / 10f);
+        hisPhysics.AddVerticalForce(direction.normalized.y / 10f);
     }
 
     private void Suck()
