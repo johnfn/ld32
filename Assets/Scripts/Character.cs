@@ -13,6 +13,8 @@ public class Character : MonoBehaviour {
 
     private HasEnergy _energy;
 
+    private FollowText _followText;
+
     private bool _currentlyBeingLaunched = false;
 
     private float _storedFriction;
@@ -23,6 +25,7 @@ public class Character : MonoBehaviour {
 	    _stats = GetComponent<ControllableStats>();
 	    _canTakeInput = GetComponent<CanTakeInput>();
 	    _energy = GetComponent<HasEnergy>();
+        _followText = GetComponent<FollowText>();
     }
 
     [UsedImplicitly]
@@ -32,10 +35,13 @@ public class Character : MonoBehaviour {
         _energy.Dead += Die;
 	}
 
+    // Really the only way this gets called is if you just launched one.
     public void Init()
     {
         _currentlyBeingLaunched = true;
         _storedFriction = _stats.Friction;
+
+        _followText.SayText("Whooeeoeoe");
     }
 
     void Die()
