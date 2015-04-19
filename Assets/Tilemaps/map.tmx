@@ -13,9 +13,20 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="5" name="tilez_0000_Layer-5" tilewidth="32" tileheight="32">
+  <image source="//vmware-host/Shared Folders/Documents/TexturesOnOSX/tilez_0000_Layer-5.png" width="480" height="293"/>
+ </tileset>
+ <tileset firstgid="140" name="waterair" tilewidth="32" tileheight="32">
+  <image source="//vmware-host/Shared Folders/Documents/TexturesOnOSX/tilez_0001_Layer-1.png" width="640" height="640"/>
+ </tileset>
+ <layer name="bg" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1FEKgkAUhlF9aBdGi2ib7tGtRFCMQ+hko94JzoH/zaf7MY5d142BIxfZQo9PerTleZPpNT3iTYXpcS492qJHW0o9zhhJdAs9ctEt9MhFt9Ajd+nT3rfRI861TyvR43jz91Fqo8fx5j3m2/Jt7Uj27HHXo9o3N1q79zDbTY9qSzcaFlb7FvRY9+sN9TjG1tvV/pv0WLfXTfXYR3QLPXLRLfQ4jx5t0aM9erRNk3bpAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPyjB63hP94=
+  </data>
+ </layer>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1lsKgCAURdGM5j/mfguuVPQ6xVrgjwiKG8E2kKS9fQBW9MiiR56qyXJuXAzu14rRo8nztprwHC3y6JHFG8mjRx5N8lR/4b1/Y+6nSZZeB53eV/Wo1vS66HetI3e55/3oAgAAnDH9ZA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgK+ZAZCrAFU=
+   eJzt0zEKwjAYhuF/8BDuLXgBL+Di6KRuTuoFvP9gh1aCNHaoNFGeB74lSwIviaBGbekH8NKGHjXRoy561KMJPWqyS9Yko4y0xzYZZcztsU7GfLkezcQGm2TMl+uxn9hAj+/61OMYepT03uMaetQi1+PQb6DFMnI9Lv0G/scy0h6nbufQo6S0x63bPcZ7sJzHyJkeddEDAKCs1Z/cAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwa55cvCFK
   </data>
  </layer>
  <objectgroup name="Boxes">
