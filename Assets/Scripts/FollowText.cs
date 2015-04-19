@@ -56,7 +56,7 @@ public class FollowText : MonoBehaviour
             return;
         }
 
-        if (_ticks > 4)
+        if (_ticks > 2)
         {
             _visibleText += _fullText[_visibleText.Length];
             FollowingText.text = _visibleText;

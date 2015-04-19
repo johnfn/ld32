@@ -55,6 +55,21 @@ public class Character : MonoBehaviour {
         }));
     }
 
+    public void SaySuckFlavorText()
+    {
+        _followText.SayText(Util.RandomElem(new List<string> {
+            "You suck! Literally... hehe",
+            "You're such a sucker!",
+            "I am being assimilated o_o",
+            "Ahhh!",
+            "I don't wanna die!",
+            "You suck a lot!",
+            "For the greater good!",
+            "Whoa!"
+        }), false);
+    }
+
+
     void Die()
     {
         Debug.Log("Uh oh... I died.");

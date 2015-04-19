@@ -110,10 +110,15 @@ public class UnconventionalGun : MonoBehaviour
 
         foreach (var target in allTargets)
         {
+            var directDistanceToMe = (target.transform.position - transform.position).magnitude;
+
+            // Debug.Log(directDistanceToMe);
+
             var distance = Util.DistanceToLine(_shotPath, target.transform.position);
 
-            if (distance < .05) continue;
+            if (distance > .6) continue;
 
+            var character = target.GetComponent<Character>();
             var physics = target.GetComponent<PhysicsController2D>();
             var collisionPoint = _shotPath.origin +
                                  _shotPath.direction * Vector3.Dot(_shotPath.direction, target.transform.position - _shotPath.origin) / 2;
@@ -121,13 +126,12 @@ public class UnconventionalGun : MonoBehaviour
             var dir = collisionPoint - target.transform.position;
             dir.Normalize();
 
-            if (distance < .1)
-            {
-                dir = dir * .1f;
-            }
+            Debug.Log(dir);
 
             physics.AddVerticalForce(dir.y * Time.deltaTime);
             physics.AddHorizontalForce(dir.x * Time.deltaTime);
+
+            character.SaySuckFlavorText();
         }
     }
 
