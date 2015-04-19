@@ -140,7 +140,7 @@ public class UnconventionalGun : MonoBehaviour
         // Add final scope
 
         _finalScope.SuckModeOn = _isSucking;
-        _finalScope.transform.position = Util.MousePosition();
+        _finalScope.transform.position = end;
 
         _shotPath = new Ray(start, direction);
     }
