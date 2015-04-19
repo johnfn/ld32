@@ -67,11 +67,11 @@ public class UnconventionalGun : MonoBehaviour
             {
                 Debug.Log("Special case: Time to die");
 
-                Manager.Instance.Dialog.ShowDialog();
+                Manager.Instance.Dialog.ShowDialog(Dialogs.OnlyOneBattery);
             }
             else
             {
-                Manager.Instance.Dialog.ShowDialog();
+                // Manager.Instance.Dialog.ShowDialog();
             }
         }
 
