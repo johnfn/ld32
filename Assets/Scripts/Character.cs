@@ -6,25 +6,36 @@ using JetBrains.Annotations;
 [DisallowMultipleComponent]
 public class Character : MonoBehaviour {
     private ControllableStats _stats;
+
     private PhysicsController2D _physics;
+
     private CanTakeInput _canTakeInput;
+
     private HasEnergy _energy;
 
-    [UsedImplicitly]
-	void Start() {
-        // TODO move friction and vel cap in here, too.
+    private bool _currentlyBeingLaunched = false;
 
+    private float _storedFriction;
+
+    void Awake()
+    {
 	    _physics = GetComponent<PhysicsController2D>();
 	    _stats = GetComponent<ControllableStats>();
 	    _canTakeInput = GetComponent<CanTakeInput>();
 	    _energy = GetComponent<HasEnergy>();
+    }
+
+    [UsedImplicitly]
+	void Start() {
+        // TODO move friction and vel cap in here, too.
 
         _energy.Dead += Die;
 	}
 
     public void Init()
     {
-        
+        _currentlyBeingLaunched = true;
+        _storedFriction = _stats.Friction;
     }
 
     void Die()
@@ -75,9 +86,25 @@ public class Character : MonoBehaviour {
         }
     }
 
+    private void TurnOffFrictionWhileFlying(CollisionModel collision)
+    {
+	    if (_currentlyBeingLaunched)
+	    {
+	        _stats.Friction = 0;
+	    }
+
+	    if (collision.TouchingBottom && _currentlyBeingLaunched)
+	    {
+            _currentlyBeingLaunched = false;
+	        _stats.Friction = _storedFriction;
+	    }
+    }
+
 	void Update()
 	{
 	    var collision = GetComponent<PhysicsController2D>().Collisions;
+
+	    TurnOffFrictionWhileFlying(collision);
 
 	    if (_canTakeInput.ActivelyTakingInput)
 	    {
