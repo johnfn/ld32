@@ -126,8 +126,6 @@ public class UnconventionalGun : MonoBehaviour
             var dir = collisionPoint - target.transform.position;
             dir.Normalize();
 
-            Debug.Log(dir);
-
             physics.AddVerticalForce(dir.y * Time.deltaTime);
             physics.AddHorizontalForce(dir.x * Time.deltaTime);
 
