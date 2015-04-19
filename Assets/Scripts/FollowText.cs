@@ -15,8 +15,13 @@ public class FollowText : MonoBehaviour
 
     private int _ticks = 0;
 
-    public void SayText(string text)
+    public void SayText(string text, bool overRide = true)
     {
+        if (FollowingText.IsActive() && !overRide)
+        {
+            return;
+        }
+
         FollowingText.gameObject.SetActive(true);
 
         _ticks = 0;

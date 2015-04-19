@@ -19,18 +19,9 @@ class Util
         return pz;
     }
 
-    public static void ToggleAnything(GameObject obj, bool visible)
+    public static T RandomElem<T>(List<T> list)
     {
-        obj.SetActive(visible);
-        /*
-        var sr = obj.GetComponent<SpriteRenderer>();
-
-        if (sr != null)
-        {
-            sr.enabled = visible;
-            return;
-        }
-        */
+        return list[UnityEngine.Random.Range(0, list.Count)];
     }
 
     public static float DistanceToLine(Ray ray, Vector3 point)

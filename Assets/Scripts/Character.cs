@@ -41,7 +41,18 @@ public class Character : MonoBehaviour {
         _currentlyBeingLaunched = true;
         _storedFriction = _stats.Friction;
 
-        _followText.SayText("Whooeeoeoe");
+        _followText.SayText(Util.RandomElem(new List<string> {
+            "Wheee!",
+            "Hello world!",
+            "I'm ALIVE!!!",
+            "Aaaahhhh!",
+            "Ready to go!",
+            "Whoa! Scary!",
+            "=D =D =D =D",
+            "Woohoo!",
+            "Yikes!",
+            "Look out below!"
+        }));
     }
 
     void Die()
