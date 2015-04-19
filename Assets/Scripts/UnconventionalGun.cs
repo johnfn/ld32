@@ -25,6 +25,8 @@ public class UnconventionalGun : MonoBehaviour
 
     private ScopeController _finalScope;
 
+    private HasEnergy _energy;
+
     private bool _isSucking = false;
 
     [UsedImplicitly]
@@ -33,6 +35,7 @@ public class UnconventionalGun : MonoBehaviour
         _scopePool = new ObjectPool(() => Manager.CreateScope(false, false).gameObject);
         _canTakeInput = GetComponent<CanTakeInput>();
         _finalScope = Manager.CreateScope(false, true);
+        _energy = GetComponent<HasEnergy>();
 
         _canTakeInput.SwitchedOff += InputTurnedOff;
     }
@@ -53,7 +56,20 @@ public class UnconventionalGun : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            ShootCopy();
+            if (_energy.HalfBatteriesLeft > 2)
+            {
+                _energy.AddEnergy(-2);
+
+                ShootCopy();
+            }
+            else if (_energy.HalfBatteriesLeft == 2)
+            {
+                Debug.Log("Special case: Time to die");
+            }
+            else
+            {
+                Debug.Log("You can't do that.");
+            }
         }
 
         if (Input.GetMouseButtonDown(1))

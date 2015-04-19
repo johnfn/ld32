@@ -10,6 +10,8 @@ public class HasEnergy : MonoBehaviour
 
     public static event GenericEvent EnergyChange;
 
+    public event GenericEvent Dead;
+
     public void AddEnergy(int halfBatteries)
     {
         HalfBatteriesLeft += halfBatteries;
@@ -17,6 +19,16 @@ public class HasEnergy : MonoBehaviour
         if (HalfBatteriesLeft > HalfBatteriesTotal)
         {
             HalfBatteriesLeft = HalfBatteriesTotal;
+        }
+
+        if (HalfBatteriesLeft < 0)
+        {
+            HalfBatteriesLeft = 0;
+
+            if (Dead != null)
+            {
+                Dead();
+            }
         }
 
         if (EnergyChange != null)

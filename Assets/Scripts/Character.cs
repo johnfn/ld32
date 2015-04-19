@@ -18,11 +18,18 @@ public class Character : MonoBehaviour {
 	    _stats = GetComponent<ControllableStats>();
 	    _canTakeInput = GetComponent<CanTakeInput>();
 	    _energy = GetComponent<HasEnergy>();
+
+        _energy.Dead += Die;
 	}
 
     public void Init()
     {
         
+    }
+
+    void Die()
+    {
+        Debug.Log("Uh oh... I died.");
     }
 	
     void GetInput()
