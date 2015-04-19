@@ -60,6 +60,7 @@ public class FollowText : MonoBehaviour
         {
             _visibleText += _fullText[_visibleText.Length];
             FollowingText.text = _visibleText;
+
             _ticks = 0;
         }
     }

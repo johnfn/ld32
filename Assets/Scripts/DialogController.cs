@@ -20,11 +20,23 @@ public class DialogController : MonoBehaviour
 
     private int _dialogPosition;
 
-    private string _shownText;
+    private string _visibleText;
 
     private List<MonoBehaviour> _disabledObjects;
 
     private bool _showingDialog = false;
+
+    private int _ticks;
+
+    private string CurrentFullText
+    {
+        get { return DialogContent[_dialogPosition][1]; }
+    }
+
+    private string CurrentSpeaker
+    {
+        get { return DialogContent[_dialogPosition][1]; }
+    }
 
     [UsedImplicitly]
     void Awake()
@@ -41,7 +53,8 @@ public class DialogController : MonoBehaviour
         }
 
         _dialogPosition = 0;
-        _shownText = "";
+        _visibleText = "";
+        _ticks = 0;
 
         TurnOffLiterallyEverythingInTheWorld();
 
@@ -51,9 +64,48 @@ public class DialogController : MonoBehaviour
     [UsedImplicitly]
     void Update()
     {
-        if (!DialogImage.IsActive()) return;
+        if (!DialogImage.IsActive())
+        {
+            return;
+        }
 
-        Debug.Log("Yer dialoggin now.");
+        _ticks++;
+
+        if (_visibleText == CurrentFullText)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                _ticks = 0;
+                _visibleText = "";
+                DialogText.text = "";
+
+                if (_dialogPosition + 1 >= DialogContent.Count)
+                {
+                    CloseDialog();
+
+                    return;
+                }
+
+                _dialogPosition += 1;
+            }
+
+            return;
+        }
+
+        if (_ticks > 2 || Input.GetMouseButton(0))
+        {
+            _visibleText += CurrentFullText[_visibleText.Length];
+            DialogText.text = _visibleText;
+
+            _ticks = 0;
+        }
+    }
+
+    private void CloseDialog()
+    {
+        _dialogPosition = 0;
+
+        TurnOnLiterallyEverythingInTheWorld();
     }
 
     private void TurnOffLiterallyEverythingInTheWorld()
@@ -77,5 +129,7 @@ public class DialogController : MonoBehaviour
         {
             component.enabled = true;
         }
+
+        Awake();
     }
 }
