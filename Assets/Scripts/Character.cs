@@ -27,7 +27,7 @@ public class Character : MonoBehaviour {
 
     public bool ProfActivatedGun = false;
 
-    private bool _firstStart = true;
+    private static bool _firstStart = true;
 
     void Awake()
     {
@@ -43,10 +43,13 @@ public class Character : MonoBehaviour {
 	void Start() {
         // TODO move friction and vel cap in here, too.
 
+        _gun.enabled = ProfActivatedGun;
+
         if (_firstStart && Manager.Instance.Debug)
         {
             _energy.HalfBatteriesTotal = 4;
             _energy.HalfBatteriesLeft = 4;
+            _gun.enabled = true;
 
             _firstStart = true;
         }
@@ -195,11 +198,9 @@ public class Character : MonoBehaviour {
 
                 if (_energy.HalfBatteriesTotal >= 4)
                 {
-                    Debug.Log("Go");
-
                     Manager.Instance.Dialog.ShowDialog(Dialogs.ProfIsUnhelpful);
 
-                    // ProfActivatedGun = true;
+                    ProfActivatedGun = true;
                     p.HasTalked = true;
                 }
             }

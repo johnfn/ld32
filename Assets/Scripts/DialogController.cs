@@ -180,6 +180,7 @@ public class DialogController : MonoBehaviour
             return;
         }
 
+        _showingDialog = true;
         _dialogPosition = 0;
         _visibleText = "";
         _ticks = 0;
@@ -242,7 +243,6 @@ public class DialogController : MonoBehaviour
         _dialogPosition = 0;
 
         StartCoroutine(WaitASecAndThenGo());
-
     }
 
     private IEnumerator WaitASecAndThenGo()
@@ -250,6 +250,8 @@ public class DialogController : MonoBehaviour
         yield return null;
 
         TurnOnLiterallyEverythingInTheWorld();
+
+        _showingDialog = false;
     }
 
     private void TurnOffLiterallyEverythingInTheWorld()
