@@ -127,7 +127,11 @@ public class PhysicsController2D : MonoBehaviour
 
     public void AddHorizontalForce(float force)
     {
-        _velocity.x += force;
+        SetHorizontalForce(_velocity.x + force);
+    }
+
+    public void SetHorizontalForce(float force) {
+        _velocity.x = force;
 
         var thingsOnTop = Collisions.PreviouslyTouchedObjects.Where(c => c.Side == CollisionSide.Top);
 
@@ -137,7 +141,7 @@ public class PhysicsController2D : MonoBehaviour
 
             if (physics)
             {
-                physics.AddHorizontalForce(force);
+                physics.SetHorizontalForce(force);
             }
         }
     }
@@ -199,7 +203,24 @@ public class PhysicsController2D : MonoBehaviour
         // Check for vertical collisions
         const int numRays = 8;
         const float skinWidth = .01f;
-        
+
+        foreach (Collision t in Collisions.OldModel.TouchedObjects)
+        {
+            if (t.Object.tag != "Pushable") continue;
+
+            if (t.Side != CollisionSide.Right && t.Side != CollisionSide.Left)
+            {
+                continue;
+            }
+
+            var otherPhysics = t.Object.GetComponent<PhysicsController2D>();
+
+            otherPhysics.AddHorizontalForce(velocity.x * .99f);
+
+            var vel = otherPhysics.Velocity;
+            otherPhysics.CheckForCollisions(ref vel);
+        }
+
         // Note: We shoot out the rays about epsilon away from our actual edge for a complicated
         // reason I don't want to get into right now. 
 

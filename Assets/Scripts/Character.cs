@@ -145,26 +145,7 @@ public class Character : MonoBehaviour {
 	    }
 
 	    CheckForPowerupCollision(collision);
-	    PushNearbyBlocks(collision);
 	}
-
-    private void PushNearbyBlocks(CollisionModel collision)
-    {
-        foreach (Collision t in collision.TouchedObjects)
-        {
-            var otherPhysics = t.Object.GetComponent<PhysicsController2D>();
-
-            if (otherPhysics == null)
-            {
-                continue;
-            }
-
-            if (t.Side == CollisionSide.Left || t.Side == CollisionSide.Right)
-            {
-                t.Object.GetComponent<PhysicsController2D>().AddHorizontalForce(_physics.Velocity.x * 0.95f);
-            }
-        }
-    }
 
     private void CheckForPowerupCollision(CollisionModel collision)
     {
