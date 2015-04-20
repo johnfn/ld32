@@ -18,11 +18,11 @@ public class HudController : MonoBehaviour
     [UsedImplicitly]
     public void Start()
     {
-        CanTakeInput.InputHolderChanged += UpdateBatteries;
-        HasEnergy.EnergyChange += UpdateBatteries;
+        // CanTakeInput.InputHolderChanged += UpdateBatteries;
+        // HasEnergy.EnergyChange += UpdateBatteries;
     }
 
-    private void UpdateBatteries()
+    private void LateUpdate()
     {
         var activeGuy = CanTakeInput.ActiveInputGuy;
         var energy = activeGuy.GetComponent<HasEnergy>();

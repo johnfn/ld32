@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour
@@ -6,6 +7,8 @@ public class CameraFollow : MonoBehaviour
     public GameObject Target;
 
     public float CameraSpeed;
+
+    private bool _trolled = false;
 
     public float Height
     {
@@ -48,7 +51,14 @@ public class CameraFollow : MonoBehaviour
 	    var maxY = minY + Util.MapHeight;
 
 	    minX += Width / 2; 
-	    maxX -= Width / 2; 
+	    maxX -= Width / 2;
+
+	    if (/* !Manager.Instance.Debug && */ !_trolled && Math.Abs(Mathf.Floor(minX) - 10f) < .01f)
+	    {
+            Manager.Instance.Dialog.ShowDialog(Dialogs.ReallyDumb);
+	        _trolled = true;
+	    }
+
 
 	    minY += Height / 2; 
 	    maxY -= Height / 2;

@@ -40,6 +40,11 @@ public class Dialogs
         }
     }
 
+    public static List<List<string>> PowerupGet = new List<List<string>>
+    {
+        new List<string> {"You", "I got the powerup! I should go talk to the Professor"}
+    };
+
     public static List<List<string>> YoureDumb = new List<List<string>>
     {
         new List<string> {"Professor", "Alright, listen up, because I'm only gonna say this once." },
@@ -55,16 +60,31 @@ public class Dialogs
         new List<string> {"You", "AH! AH! AH! AH! AH! AH! AH! AH!"},
         new List<string> {"You", "..."},
         new List<string> {"You", "*passes out*"},
+        new List<string> {"Professor", "Uh."},
         new List<string> {"Professor", "..."},
-        new List<string> {"Professor", "Finally, some quiet."},
-        new List<string> {"Professor", "Anyway, I do believe I was talking about giving you a basic run down on how to play this game."},
+        new List<string> {"Professor", "Phew. Finally, some quiet."},
+        new List<string> {"Professor", "Anyway, I do believe I was in the middle of giving you a basic run down on how to play this game."},
         new List<string> {"Professor", "So, you see that blue stuff above this dialog? That is the sky."},
-        new List<string> {"Professor", "This stuff you're reading right now? This is dialog text. Just how dumb are you not to know that. Seriously, I'm constantly amazed..."},
+        new List<string> {"Professor", "This stuff you're reading right now? This is dialog text. Just how dumb are you not to know that? Seriously, I'm constantly amazed..."},
         new List<string> {"Professor", "Do you see that blue stuff BELOW this dialog? That is water."},
         new List<string> {"Professor", "Yes, I know it's pretty tricky. How do you tell one blue from the other?? It baffles me every day."},
         new List<string> {"Professor", "(It doesn't really.)"},
         new List<string> {"Professor", "Alright, that should be enough."},
         new List<string> {"Professor", "If you still can't figure out how to play the game, I can't say that I'll be concerned."},
+    };
+
+    public static List<List<string>> ReallyDumb = new List<List<string>>
+    {
+        new List<string> {"Professor", "Ok! I did a little bit more market research, and it turns out there's something people like even more than being treated like idiots."},
+        new List<string> {"You", "What?"},
+        new List<string> {"Professor", "In app purchases!"},
+        new List<string> {"You", "But I don't have any money."},
+        new List<string> {"Professor", "Sure you do. Anyways, I heard that the absolute best is pay2win. So let's give that one a shot."},
+        new List<string> {"Professor", "Alright, player. Doing anything, including doing literally nothing at all will authorize a payment of *cough*million dollars. In return, you will instantly win this game."},
+        new List<string> {"Professor", "You can then procede with your life like normal." },
+        new List<string> {"You", "Uh-"},
+        new List<string> {"Professor", "Oh! You just clicked!" },
+        new List<string> {"Professor", "Well thanks for buying! Sorry, we're having internet connectivity issues, so I dunno about the winning thing, but rest assured we were able to charge your card."},
     };
 
     public static List<List<string>> GiveGun = new List<List<string>>
@@ -234,7 +254,10 @@ public class DialogController : MonoBehaviour
     {
         foreach (var component in _disabledObjects)
         {
-            component.enabled = true;
+            if (component != null)
+            {
+                component.enabled = true;
+            }
         }
 
         Awake();

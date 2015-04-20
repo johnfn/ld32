@@ -23,6 +23,8 @@ public class Character : MonoBehaviour {
 
     private bool _trolledYet = false;
 
+    private bool _everGotPowerup = false;
+
     void Awake()
     {
 	    _physics = GetComponent<PhysicsController2D>();
@@ -191,6 +193,13 @@ public class Character : MonoBehaviour {
         if (powerup == null)
         {
             return;
+        }
+
+        if (!_everGotPowerup)
+        {
+            _everGotPowerup = true;
+
+            Manager.Instance.Dialog.ShowDialog(Dialogs.PowerupGet);
         }
 
         var powerupObj = powerup.Object;
