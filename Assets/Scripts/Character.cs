@@ -25,6 +25,10 @@ public class Character : MonoBehaviour {
 
     private bool _everGotPowerup = false;
 
+    public bool ProfActivatedGun = false;
+
+    private bool _firstStart = true;
+
     void Awake()
     {
 	    _physics = GetComponent<PhysicsController2D>();
@@ -38,6 +42,14 @@ public class Character : MonoBehaviour {
     [UsedImplicitly]
 	void Start() {
         // TODO move friction and vel cap in here, too.
+
+        if (_firstStart && Manager.Instance.Debug)
+        {
+            _energy.HalfBatteriesTotal = 4;
+            _energy.HalfBatteriesLeft = 4;
+
+            _firstStart = true;
+        }
 
         _energy.Dead += Die;
 
@@ -168,9 +180,9 @@ public class Character : MonoBehaviour {
 
         foreach (var p in profs)
         {
-            if (p.HasTalked) return;
-
             var dist = (p.transform.position - transform.position).magnitude;
+
+            if (p.HasTalked) continue;
 
             if (dist < 0.5)
             {
@@ -179,6 +191,15 @@ public class Character : MonoBehaviour {
                     Manager.Instance.Dialog.ShowDialog(Dialogs.GiveGun);
 
                     _gun.enabled = true;
+                }
+
+                if (_energy.HalfBatteriesTotal >= 4)
+                {
+                    Debug.Log("Go");
+
+                    Manager.Instance.Dialog.ShowDialog(Dialogs.ProfIsUnhelpful);
+
+                    // ProfActivatedGun = true;
                     p.HasTalked = true;
                 }
             }

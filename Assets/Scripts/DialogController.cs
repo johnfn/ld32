@@ -45,6 +45,23 @@ public class Dialogs
         new List<string> {"You", "I got the powerup! I should go talk to the Professor"}
     };
 
+    public static List<List<string>> ShouldTalkToProf = new List<List<string>>
+    {
+        new List<string> {"You", "I should go talk to the prof first."}
+    };
+
+    public static List<List<string>> ProfIsUnhelpful = new List<List<string>>
+    {
+        new List<string> {"You", "I got a battery! Now what."},
+        new List<string> {"Professor", "Uh, I dunno."},
+        new List<string> {"Professor", "Try to shoot it I guess? By clicking."},
+        new List<string> {"You", "Wow, and I waited all this time patiently for you."},
+        new List<string> {"You", "What does it even do?"},
+        new List<string> {"Professor", "Yeah, I have no clue. Probably nothing. Might destroy the world."},
+        new List<string> {"You", "What?!?"},
+        new List<string> {"Professor", "Probably nothing. Just aim it away from me."},
+    };
+
     public static List<List<string>> YoureDumb = new List<List<string>>
     {
         new List<string> {"Professor", "Alright, listen up, because I'm only gonna say this once." },

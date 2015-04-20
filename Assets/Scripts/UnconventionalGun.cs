@@ -27,6 +27,8 @@ public class UnconventionalGun : MonoBehaviour
 
     private HasEnergy _energy;
 
+    private Character _character;
+
     private bool _isSucking = false;
 
     [UsedImplicitly]
@@ -36,6 +38,7 @@ public class UnconventionalGun : MonoBehaviour
         _canTakeInput = GetComponent<CanTakeInput>();
         _finalScope = Manager.CreateScope(false, true);
         _energy = GetComponent<HasEnergy>();
+        _character = GetComponent<Character>();
 
         _canTakeInput.SwitchedOff += InputTurnedOff;
     }
@@ -56,22 +59,29 @@ public class UnconventionalGun : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (_energy.HalfBatteriesLeft > 2)
+            if (!_character.ProfActivatedGun)
             {
-                _energy.AddEnergy(-2);
-                _energy.AddTotalEnergy(-2);
-
-                ShootCopy();
-            }
-            else if (_energy.HalfBatteriesLeft == 2)
-            {
-                Debug.Log("Special case: Time to die");
-
-                Manager.Instance.Dialog.ShowDialog(Dialogs.OnlyOneBattery);
+                Manager.Instance.Dialog.ShowDialog(Dialogs.ShouldTalkToProf);
             }
             else
             {
-                // Manager.Instance.Dialog.ShowDialog();
+                if (_energy.HalfBatteriesLeft > 2)
+                {
+                    _energy.AddEnergy(-2);
+                    _energy.AddTotalEnergy(-2);
+
+                    ShootCopy();
+                }
+                else if (_energy.HalfBatteriesLeft == 2)
+                {
+                    Debug.Log("Special case: Time to die");
+
+                    Manager.Instance.Dialog.ShowDialog(Dialogs.OnlyOneBattery);
+                }
+                else
+                {
+                    // Manager.Instance.Dialog.ShowDialog();
+                }
             }
         }
 

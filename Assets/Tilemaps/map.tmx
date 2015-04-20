@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="64" tilewidth="32" tileheight="32" nextobjectid="15">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="64" tilewidth="32" tileheight="32" nextobjectid="16">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="../Textures/tiles.png" width="64" height="64"/>
   <tile id="0">
@@ -112,13 +112,14 @@
   <object id="11" gid="55" x="1696" y="384"/>
   <object id="13" gid="129" x="2688" y="664"/>
   <object id="14" gid="128" x="1800" y="632"/>
+  <object id="15" gid="128" x="832" y="192"/>
  </objectgroup>
  <layer name="HardcoreCollision" width="500" height="64">
   <properties>
    <property name="unity:layer" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3dEJwCAMQMEM4xTdfzB/OoDFEEhzB5nhYUCNAAD+YL0DAPSl5wDQn54DQH96DgD96TkAAAAAAAAAAAAAANM8FwMAAADMdbNTsGMAgG+8iQMAAAAAAAAAAMAE2f/I+ZcOAOqtyG2wngNAvdOen94f13MAqJd9PgcA6uk5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMMkGYgANpw==
+   eJzt3dEJwCAMQEGHcYruP5g/HSDFEEhzB87wVJSsBQD8wX4XANCXngNAf3oOAP3pOQD0p+cAQIT9AgD0p+cA0J+eAwAAAABAnudiAQAAAHPd3Cm4YwCAb7yhBwAAAAAAAAAAYILsOXLm0gFAvb1yG6znAFAv2vPo/3E9B4B62edzAKCengMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACTHB7kDhM=
   </data>
  </layer>
 </map>
