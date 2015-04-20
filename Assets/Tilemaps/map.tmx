@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="64" tilewidth="32" tileheight="32" nextobjectid="13">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="64" tilewidth="32" tileheight="32" nextobjectid="14">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
   <image source="../Textures/tiles.png" width="64" height="64"/>
   <tile id="0">
@@ -30,6 +30,11 @@
     <object id="0" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
+  <tile id="32">
+   <objectgroup draworder="index">
+    <object id="0" x="0" y="32" width="32" height="8"/>
+   </objectgroup>
+  </tile>
   <tile id="49">
    <objectgroup draworder="index">
     <object id="0" x="0" y="32" width="32" height="8"/>
@@ -45,28 +50,38 @@
     <object id="0" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
+  <tile id="82">
+   <objectgroup draworder="index">
+    <object id="0" x="0" y="32" width="32" height="8"/>
+   </objectgroup>
+  </tile>
+  <tile id="124">
+   <properties>
+    <property name="PrefabName" value="Professor"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="140" name="waterair" tilewidth="32" tileheight="32">
+ <tileset firstgid="200" name="waterair" tilewidth="32" tileheight="32">
   <image source="//vmware-host/Shared Folders/Documents/TexturesOnOSX/tilez_0001_Layer-1.png" width="640" height="640"/>
  </tileset>
  <layer name="water" width="500" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2kFOwgAURdEyYOQWSFiE23TRxjyJpFKa9oPflnOSOzCQOHufosfDMByljQZAdO+xVAmA6N5jqRIA0b3HUiUAonuPpUoARPceS5UAiO49lioBEN17LFUCILr3WKoEQHTvsVQJgOjeY6kSANG9x1IlAOJ0+Kl7m6WlARDX2+i2a2sBEFM3/GP4Xfd2S+MAiOttvL7ta+75+z/Yd71WAMTUTt6643P32j3XXwdATO3kaaLL67du99J77v6rGgCxdkfv3fO5/6t7+37tXNhxnwX0FQCxdD8vd/o8+nnJfV57i9f8Lu07AKJjg5/5bD33dwLtKwCiY4Mfdc/Ht/re3R6/z43fRwDEs/f21rOy78r1qACI7j1+RJ63XzcAonuPpUoARPced+a5fvsBEN17LFUCILr3WKoEQHTvsVQJgOjeY6kSANG9x1IlAKJ7j6VKAET3HkuVAIjuPZYqARDdeyxVAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYJ8+AdtFnnQ=
+   eJzt2jFuwlAURFFYGlW2gMQisk2WlSYRyLFB+D9ngt850hTIBQ3y9QdOx8PhZJEBQJV00zoPAKqkm9Z5AFAl3bTOA4Aq6aZ1HgBUSTet8wCgSrppnQcAVdJN6zwAqJJuWucBQJV00zoPAKqkm9Z5AFAl3bTOA4Aq5+Nt6b51GwBUue+Ltus5AO9pqeHXw++l+2eeIwCYd3+fv2/7mp5//oNWmZ4DdLR0z5/r+LNe6/l7DID9Wbrnnxf2qN2v9lz/9RyAGmub8Kjnz/5X9/F97TLQJM8Ceg7Azast+On0ZfL6lT6vbfGa9zI9B+gg0ZMtz9bPfiew9CcOgC28c8+nrZ52e6np3RsPwP5s3Y65s7LvyvUcgFrptlSs+3lbzwFIt8X0HIBx6bYk1/VcD8D+pNtieg7AuHRbTM8BGJdui+k5AOPSbTE9B2Bcui2m6QCMS3fF9ByAcemu2Dat1XKAXtLtsr8bAPuVbozpLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEx9AYO6/5o=
   </data>
  </layer>
  <layer name="bg1" width="500" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt1bEJA0EAA8HrP7wGvxVjcPiZA0kwA9uCdM85V3oJgB3pz1BvAOxIf4Z6A2DHd7efX+n/UFcA7Eh/hnoDYEf6M9QbADvSn6HeANiR/gz1BsCO9GeoNwB2pD9DvQGwI/0Z6g2AHenPUG8AbEr/h7oCYF/6S5QPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID/fQDCuDGZ
+   eJzt1bEJw1AAQ8HvObL/Op4pmLTuUkiCO3grSPc555ZeAmBH+jPUGwA70p+h3gDY8ez25/qV/g91BcCO9GeoNwB2pD9DvQGwI/0Z6g2AHenPUG8A7Eh/hnoDYEf6M9QbADvSn6HeANiR/gz1BsCm9H+oKwD2pb9E+QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+N8XsqLohg==
   </data>
  </layer>
  <layer name="bg2 moving" width="500" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2EEKgCAQQFHvf7m5UstACq1RUnoPXCWDu2+WAgAAAAAAAADU4usDAAAAAEvxVgAA8+ktAOxhhWZHtQCAeeru3q2RMwGA93rbnelwds7Vd/cAADhle95qcmt/9m4AAIzteXTOfbKn57wA8Hejez7rfz/7TgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkHxk+OUQ==
+   eJzt2EEKgCAQQFFbd//7RqtCCqUZyeg9cJXI7L5ZCgAAAAAAAABQW5e3JwAAAABm4q0AAMbTWwD4hhmavc9wXgDAOHV371bmmQDAc73tjnQ4es7Vd/cAADhEe95qcmt/9G4AAOT2/NzXrD098wLA32X3fNT/fvSdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIjYdSghB
   </data>
  </layer>
  <layer name="parallax" width="500" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2ksKwyAUQNG42/620A+l2XcbSmgDKZhUEsk7B8SJqLPrwKYBAAAAAAAAAACAuE5p7RsAAP+6Fer5Pb0HAFBO19ZjRl9/NXg3sc16DgDldW29ZvZ8P7JuSs8P6dPznDcEAJBnyZ5fvnqec+Ycj9e+rbcCAMHU1PNzGs5z6DkAEW2p533LNR2AaKb0fKyzeg4A69tSz9s0HAAQRU097+k5ANRrif/tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABDZE3JbNGE=
+   eJzt2ksOgjAUQFG6/23424KfGN2ZGkPUhEopaCuekzRMmtcyugxoGgAAAAAAAACAz1qE0jcAgLiNTiXRcwBqdpioU8dwX3Ol5wCUcGvrOqFBsQYP7ZeeD9sHAClubd0n9nzZsW9Il1bh0fOUb4jScpqr5wCU8M2e7556nnJmjtN17rln9hTNjZ2j5wCUUFPPt+H1mUPPAfhHc+p529i+po9t7rv3yJ2t7wCMMaTnXZ3V82lm6zkAY8yp5+fwumL0HIC5qannLT0HgHp94//2FDX0PPdOAMDd2HbqOQDQRc8B4PfpOQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0zQUPYX7+
   </data>
  </layer>
  <layer name="Tile Layer 1" width="500" height="64">
@@ -74,19 +89,20 @@
    <property name="unity:layer" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3DtOw0AUQNEpWEXaFLCAiJ6GkgroqAIbYP8FKTLiyRo7YzuOPzlHeo0VeZzq2vEoKQEAAAAAAAAAAMD67ee+AABgtJcw+zAAwHrEnh/CAADrMbbnuzAAwDzaer6/MNljmGzXMWO4dwCAsraev16YrNTzeOypMWOU1urLPQEAW9TV8/e0vZ5f4xwAsDRdPT+maXo+dA99TYuHvB8AgLXr2/O382SXet6clIbvoa9p8aFl+pwDANaspudf58nm7HnpOVzPAeBf7PnHaT7TsJ4/NyY2t6/mWqX3AG09z71vXov/zgFgy2LPv0/zk4b1vKu5fY3pec1efQDYot/CsSX2PL/T13MAqFPT8+gWPc/XpOcAMI1r9rzt3LU9j/sASnv1AYCyKZ+HSz3v+mzcB1DaCwAAlN3i9+2hXdZzAFgOPQeA+6XnAFDnYcFr9On5kr/HPa4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEzvD1DCYT0=
+   eJzt3LtOwzAUgGEPPAVrB3gAxM7CyMRlYgJegPcfAAmrh8jOxUnaBH2fdJaK1lGXn8ZWUgIAAAAAAAAAAID9O5z7AgCA2e7CHMIAAPsRe34TBgDYj7k9vwwDAJxHreeHgcmuwmSXPTOH/x0AoKzW8/uByUo9j69dd2aO0loAQH/PH5OeL30vwL0FANbQ1/O3tE7PW8/Qj+n50P5Ay5pLcm8BgDVM7fnD72RDPe9OSu1n6Mf0/KYyrfQcgL0Z0/PX38nO2fPS73A9B4Cj2POn73lObT2/7Uxs7lTdtUr7ALHhL2GGzuvX5rbhOvvk78AzewA4hdjz9+/5SG0972vuVFN7PnRGf+wsaa3PBYCaz8JrW+x53tM/Zc+nnrfLf5evU88BOKcxPY9O0fN8Tafs+dT9+df09zr1HIA9WbLntc8e2/N4DqD7u17PAaBuzf3oUs/71o7nALrvm9Pz2nm7SM8B2LO1z5f96O4BrP2+H2Pu65fWal0PAP67LfS89Gzc0lp6DgDLWrLnpWfvlNbScwD26GLDa0zpa3eNWs+f0/HMXWmtvvW2/F1tbQ0AWFrs+Uc6nrmL/D4HgO0rPXsHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgHZfE1iKnw==
   </data>
  </layer>
  <objectgroup name="Boxes">
   <object id="6" gid="4" x="320" y="384"/>
   <object id="11" gid="55" x="1696" y="384"/>
+  <object id="13" gid="129" x="2688" y="664"/>
  </objectgroup>
  <layer name="HardcoreCollision" width="500" height="64">
   <properties>
    <property name="unity:layer" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1UENACAMBMGKqQr8C+ODAcLrykyyGrYKAJigTwBALj8HgHx+DgD5/BwA8vk5AAAAAAAAAAAAAAC/WQ8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADArQ3eWwTP
+   eJzt3EENACAMBMGKQQX+hfHBAOF17UxSDZvco1UAQAfrHgCQS88BIJ+eA0A+PQeAfHoOAAAAAAAAAAAAAMA0++MAAACAuX42BRsDALzxEwcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBuDrnGCUE=
   </data>
  </layer>
 </map>
