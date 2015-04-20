@@ -30,13 +30,13 @@ public class TileModel: BaseModel
 }
 
 public class Tile: BaseBehavior<TileModel> {
-    private BoxCollider2D collider;
+    private BoxCollider2D _collider;
 
-    private SpriteRenderer renderer;
+    private SpriteRenderer _renderer;
 
-    public float Width { get { return collider.bounds.size.x; } }
+    public float Width { get { return _collider.bounds.size.x; } }
 
-    public float Height { get { return collider.bounds.size.y; } }
+    public float Height { get { return _collider.bounds.size.y; } }
 
     public Vector2 Dimensions { get { return new Vector2(Width, Height); } }
 
@@ -45,8 +45,8 @@ public class Tile: BaseBehavior<TileModel> {
 	{
 	    Model = new TileModel();
 
-        collider = GetComponent<BoxCollider2D>();
-	    renderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<BoxCollider2D>();
+	    _renderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -58,16 +58,6 @@ public class Tile: BaseBehavior<TileModel> {
     override protected void DirtyUpdate()
     {
         return;
-
-        if (Model.TileType == Type.Normal)
-        {
-            renderer.color = Color.white;
-        }
-
-        if (Model.TileType == Type.Wall)
-        {
-            renderer.color = Color.red;
-        }
     }
 
     void OnMouseOver()

@@ -54,7 +54,7 @@ public class UnconventionalGun : MonoBehaviour
 
         DrawScopes();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             if (_energy.HalfBatteriesLeft > 2)
             {

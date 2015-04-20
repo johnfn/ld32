@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,35 @@ public class Dialogs
             };
         }
     }
+
+    public static List<List<string>> GiveGun = new List<List<string>>
+    {
+        new List<string> {"Professor", "Hello there."},
+        /*
+        new List<string> {"You", "Um... Hi."},
+        new List<string> {"You", "Who are you?"},
+        new List<string> {"Professor", "Huh? Why do you want to know that?"},
+        new List<string>
+        {
+            "You",
+            "Uh.. I was only asking to be courteous. I can clearly read under your picture on the dialog screen that you are the Professor."
+        },
+        new List<string> {"Professor", "...What?"},
+        new List<string> {"You", "Eh, don't worry about it."},
+        new List<string> {"Professor", "..."},
+        new List<string> {"You", "..."},
+        new List<string> {"You", "So what's up?"},
+        new List<string> {"Professor", "I've recently developed something amazing!"},
+        new List<string> {"Professor", "A gun SO UNCONVENTIONAL that I don't even know what it does!"},
+        new List<string> {"You", "Er... Ok."},
+        new List<string> {"Professor", "Anyway, it's battery powered, and it takes a whole battery to fire."},
+        new List<string> {"Professor", "You can see how many batteries you have in the top right of your screen."},
+        new List<string> {"You", "I have no clue what you're talking about right now."},
+        new List<string> {"You", "But I only have one battery in my chasis."},
+        new List<string> {"Professor", "Aw, crap. I'll give it to you now. In the mean time, go find a battery."},
+        new List<string> {"You", "Ok. Thanks! I guess."},
+        */
+    };
 
     private static bool _onlyOneBatterySeen = false;
 }
@@ -144,6 +174,14 @@ public class DialogController : MonoBehaviour
     private void CloseDialog()
     {
         _dialogPosition = 0;
+
+        StartCoroutine(WaitASecAndThenGo());
+
+    }
+
+    private IEnumerator WaitASecAndThenGo()
+    {
+        yield return null;
 
         TurnOnLiterallyEverythingInTheWorld();
     }

@@ -19,6 +19,8 @@ public class Character : MonoBehaviour {
 
     private float _storedFriction;
 
+    private UnconventionalGun _gun;
+
     void Awake()
     {
 	    _physics = GetComponent<PhysicsController2D>();
@@ -26,6 +28,7 @@ public class Character : MonoBehaviour {
 	    _canTakeInput = GetComponent<CanTakeInput>();
 	    _energy = GetComponent<HasEnergy>();
         _followText = GetComponent<FollowText>();
+        _gun = GetComponent<UnconventionalGun>();
     }
 
     [UsedImplicitly]
@@ -142,10 +145,34 @@ public class Character : MonoBehaviour {
 	    {
 	        GetInput();
 	        AbsorbNearbyGuys(collision);
+	        CheckForProfessor();
 	    }
 
 	    CheckForPowerupCollision(collision);
 	}
+
+    private void CheckForProfessor()
+    {
+        var profs = Professor.Professors;
+
+        foreach (var p in profs)
+        {
+            if (p.HasTalked) return;
+
+            var dist = (p.transform.position - transform.position).magnitude;
+
+            if (dist < 0.5)
+            {
+                if (!_gun.enabled)
+                {
+                    Manager.Instance.Dialog.ShowDialog(Dialogs.GiveGun);
+
+                    _gun.enabled = true;
+                    p.HasTalked = true;
+                }
+            }
+        }
+    }
 
     private void CheckForPowerupCollision(CollisionModel collision)
     {
