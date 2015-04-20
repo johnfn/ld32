@@ -40,6 +40,25 @@ public class Dialogs
         }
     }
 
+    public static List<List<string>> WhatOnEarth = new List<List<string>>
+    {
+        new List<string> {"You", "..."},
+        new List<string> {"You", "Is that... "},
+        new List<string> {"You", "Me?!?"},
+        new List<string> {"Other you", "Ack!"},
+        new List<string> {"You", "What the heck is going on?"},
+        new List<string> {"Professor", "Hm! Interesting!"},
+        new List<string> {"Professor", "You can switch who you're controling by hitting... the uh... control key. Yeah, that'll work."},
+        new List<string> {"Professor", "Also, if you're standing close enough to a clone of yourself, and you press ctrl, you'll assimilate his energy and he will disappear."},
+        new List<string> {"Professor", "Last thing: Right clicking turns your gun into VACUUM MODE! Just try it."},
+        new List<string> {"You", "Wow! Sounds like a lot of potential for puzzles."},
+        new List<string> {"Unity", "Not if I have anything to say about it!"},
+        new List<string> {"You", "Uh oh..."},
+        new List<string> {"Professor", "Oh crap, did you hear that? It seems like Unity gets more and more unstable as this game gets more and more awesome!"},
+        new List<string> {"You", "What do I do??"},
+        new List<string> {"Professor", "Just be careful, ok? And remember, control key."},
+    };
+
     public static List<List<string>> PowerupGet = new List<List<string>>
     {
         new List<string> {"You", "I got the powerup! I should go talk to the Professor"}

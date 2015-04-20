@@ -31,6 +31,8 @@ public class UnconventionalGun : MonoBehaviour
 
     private bool _isSucking = false;
 
+    private static bool _hasEverShot = false;
+
     [UsedImplicitly]
     public void Start()
     {
@@ -41,6 +43,11 @@ public class UnconventionalGun : MonoBehaviour
         _character = GetComponent<Character>();
 
         _canTakeInput.SwitchedOff += InputTurnedOff;
+
+        if (Manager.Instance.Debug)
+        {
+            _hasEverShot = true;
+        }
     }
 
     private void InputTurnedOff()
@@ -59,7 +66,7 @@ public class UnconventionalGun : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (!_character.ProfActivatedGun)
+            if (!Character.ProfActivatedGun)
             {
                 Manager.Instance.Dialog.ShowDialog(Dialogs.ShouldTalkToProf);
             }
@@ -112,6 +119,19 @@ public class UnconventionalGun : MonoBehaviour
 
         hisPhysics.AddHorizontalForce(direction.normalized.x / 10f);
         hisPhysics.AddVerticalForce(direction.normalized.y / 10f);
+
+        if (!_hasEverShot)
+        {
+            _hasEverShot = true;
+            StartCoroutine(WaitAndThenTalk());
+        }
+    }
+
+    private IEnumerator WaitAndThenTalk()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        Manager.Instance.Dialog.ShowDialog(Dialogs.WhatOnEarth);
     }
 
     private void Suck()

@@ -4,7 +4,10 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject Target;
+    public GameObject Target
+    {
+        get { return CanTakeInput.ActiveInputGuy.gameObject; }
+    }
 
     public float CameraSpeed;
 

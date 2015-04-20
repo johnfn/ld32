@@ -25,7 +25,7 @@ public class Character : MonoBehaviour {
 
     private bool _everGotPowerup = false;
 
-    public bool ProfActivatedGun = false;
+    public static bool ProfActivatedGun = false;
 
     private static bool _firstStart = true;
 
@@ -42,6 +42,15 @@ public class Character : MonoBehaviour {
     [UsedImplicitly]
 	void Start() {
         // TODO move friction and vel cap in here, too.
+
+        if (!Manager.Instance.Debug)
+        {
+            ProfActivatedGun = false;
+        }
+        else
+        {
+            ProfActivatedGun = true;
+        }
 
         _gun.enabled = ProfActivatedGun;
 
@@ -131,6 +140,11 @@ public class Character : MonoBehaviour {
 
     private void AbsorbNearbyGuys(CollisionModel collision)
     {
+        if (!Input.GetKeyDown(KeyCode.LeftControl) && !Input.GetKeyDown(KeyCode.RightControl))
+        {
+            return;
+        }
+
         var guys = collision.TouchedObjects
             .Where(t => t.Object.GetComponent<CanTakeInput>() != null)
             .ToList();
@@ -196,7 +210,7 @@ public class Character : MonoBehaviour {
                     _gun.enabled = true;
                 }
 
-                if (_energy.HalfBatteriesTotal >= 4)
+                if (_energy.HalfBatteriesTotal >= 4 && !ProfActivatedGun)
                 {
                     Manager.Instance.Dialog.ShowDialog(Dialogs.ProfIsUnhelpful);
 

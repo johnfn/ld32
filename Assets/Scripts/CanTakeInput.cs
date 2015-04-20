@@ -77,14 +77,17 @@ public class CanTakeInput : MonoBehaviour
         nextTarget.JustSwitched = true;
         if (nextTarget.SwitchedOn != null) nextTarget.SwitchedOn();
 
-        Manager.CustomCamera.Target = nextTarget.gameObject;
-
         if (InputHolderChanged != null) InputHolderChanged();
     }
 
     [UsedImplicitly]
     void OnDestroy()
     {
+        if (ActiveInputGuy == this)
+        {
+            SwitchInput();
+        }
+
         InputTargets.Remove(this);
     }
 }
