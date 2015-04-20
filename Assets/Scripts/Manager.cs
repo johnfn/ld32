@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Manager : MonoBehaviour {
+public class Manager : MonoBehaviour
+{
+    public bool Debug = false;
+
     public GameObject Tile;
 
     public GameObject Root;

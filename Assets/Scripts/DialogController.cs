@@ -19,7 +19,11 @@ public class Dialogs
                 {
                     new List<string> {"Professor", "You can't do that!"},
                     new List<string> {"You", "What?"},
-                    new List<string> { "Professor", "If my observations on this ham radio are correct, you just tried to shoot the gun with only 1 battery left!" },
+                    new List<string>
+                    {
+                        "Professor",
+                        "If my observations on this ham radio are correct, you just tried to shoot the gun with only 1 battery left!"
+                    },
                     new List<string> {"You", "So?"},
                     new List<string> {"Professor", "You would die! It's too dangerous. I can't allow you to do it."},
                     new List<string> {"You", "Fine, whatever."},
@@ -36,10 +40,36 @@ public class Dialogs
         }
     }
 
+    public static List<List<string>> YoureDumb = new List<List<string>>
+    {
+        new List<string> {"Professor", "Alright, listen up, because I'm only gonna say this once." },
+        new List<string> {"Professor", "I heard that players like being treated like utter idiots, so I'm going to give you some basic information about how to play this game." },
+        new List<string> {"You", "..." },
+        new List<string> {"You", "WHO ARE YOU?" },
+        new List<string> {"You", "HOW DID YOU GET INSIDE MY MIND?!?" },
+        new List<string> {"Professor", "..." },
+        new List<string> {"Professor", "Wow, it's even worse than I thought."},
+        new List<string> {"You", "AH!" },
+        new List<string> {"You", "..." },
+        new List<string> {"Professor", "..." },
+        new List<string> {"You", "AH! AH! AH! AH! AH! AH! AH! AH!"},
+        new List<string> {"You", "..."},
+        new List<string> {"You", "*passes out*"},
+        new List<string> {"Professor", "..."},
+        new List<string> {"Professor", "Finally, some quiet."},
+        new List<string> {"Professor", "Anyway, I do believe I was talking about giving you a basic run down on how to play this game."},
+        new List<string> {"Professor", "So, you see that blue stuff above this dialog? That is the sky."},
+        new List<string> {"Professor", "This stuff you're reading right now? This is dialog text. Just how dumb are you not to know that. Seriously, I'm constantly amazed..."},
+        new List<string> {"Professor", "Do you see that blue stuff BELOW this dialog? That is water."},
+        new List<string> {"Professor", "Yes, I know it's pretty tricky. How do you tell one blue from the other?? It baffles me every day."},
+        new List<string> {"Professor", "(It doesn't really.)"},
+        new List<string> {"Professor", "Alright, that should be enough."},
+        new List<string> {"Professor", "If you still can't figure out how to play the game, I can't say that I'll be concerned."},
+    };
+
     public static List<List<string>> GiveGun = new List<List<string>>
     {
         new List<string> {"Professor", "Hello there."},
-        /*
         new List<string> {"You", "Um... Hi."},
         new List<string> {"You", "Who are you?"},
         new List<string> {"Professor", "Huh? Why do you want to know that?"},
@@ -62,7 +92,6 @@ public class Dialogs
         new List<string> {"You", "But I only have one battery in my chasis."},
         new List<string> {"Professor", "Aw, crap. I'll give it to you now. In the mean time, go find a battery."},
         new List<string> {"You", "Ok. Thanks! I guess."},
-        */
     };
 
     private static bool _onlyOneBatterySeen = false;

@@ -21,6 +21,8 @@ public class Character : MonoBehaviour {
 
     private UnconventionalGun _gun;
 
+    private bool _trolledYet = false;
+
     void Awake()
     {
 	    _physics = GetComponent<PhysicsController2D>();
@@ -36,6 +38,13 @@ public class Character : MonoBehaviour {
         // TODO move friction and vel cap in here, too.
 
         _energy.Dead += Die;
+
+        if (!Manager.Instance.Debug && !_trolledYet)
+        {
+            Manager.Instance.Dialog.ShowDialog(Dialogs.YoureDumb);
+
+            _trolledYet = true;
+        }
 	}
 
     // Really the only way this gets called is if you just launched one.
